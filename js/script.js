@@ -10,8 +10,8 @@ var options = {
 		}
 	}
 };
-
-$("#global-search").easyAutocomplete(options);
+console.log(options)
+$("#search-input").easyAutocomplete(options);
 
 
 
