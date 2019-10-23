@@ -2,8 +2,8 @@
 
 ## Design da Pagina
 - [] Desenvolver o layout da pagina como esta no PDF.
-- [] Clicar em home o site recarrega
-- [] Favorito, Ir para gina de favoritos
+- [x] Clicar em home o site recarrega
+- [x] Favorito, Ir para gina de favoritos
 - [x] Titulo “The Beer Bank” e subtitulo “Find your favourite beer here”
 - [] Campo de pesquisa
 - [] Site ser respondivo

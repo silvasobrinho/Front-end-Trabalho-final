@@ -16,26 +16,31 @@
 <body>
     <div class="header">
         <nav class="navbar  navbar-expand-lg fixed-top navbar-light bg-ligh menu">
+
             <ul class="navbar-nav ml-auto">
-                <!--<a class="navbar-brand" href="#">Home</a>
-                <a class="navbar-brand" href="#">Favourite</a>
-            --->
-                <li class="nav-item ">
-                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="favourite.html">Favourite <span class="sr-only">(current)</span></a>
-                </li>
-            </ul>
+
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item ">
+                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="favourite.html">Favourite <span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                </div>
         </nav>
         <div class="d-flex flex-column bg-dark titulo">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <h1 class="align-self-center">The Bear Bank</h1>
             <h2 class="align-self-center">Find your favorite bear herer</h2>
             <div class="input-group col-md-4 align-self-center">
-                <input class="form-control py-2" type="search" value="search" id="search-input">
+                <input class="form-control py-2" type="search" value="search" id="example-search-input">
             </div>
             </button>
             </span>
@@ -43,9 +48,6 @@
 
     </div>
     <!--- Cards para exibição das cervejas-->
-    <div id="cervejas"></div>
-
-
     <div class="cartoes-cervejas row container-fluid mt-4">
         <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 col-sm-12">
