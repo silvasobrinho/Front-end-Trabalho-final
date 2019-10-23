@@ -1,0 +1,34 @@
+.header {
+    background-color: orange;
+
+    height: 18em;
+}
+
+.titulo {
+    color: #eeeeee;
+    padding-top: 5em;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.navbar-light .nav-item.active .nav-link,
+.navbar-light .nav-item:focus .nav-link,
+.navbar-light .nav-item:hover .nav-link {
+    color: #ffffff;
+}
+
+.card-title {
+    color: orange;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card-text {
+    text-align: center;
+}
+
+.cartoes-cervejas {
+    padding: 3em;
+}
