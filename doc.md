@@ -42,8 +42,8 @@
 
 ## Busca Avançada
 
-- [] Adicionar um link "ADvenced Search" abaixo o campo de busca
-- [] Clicar no link vai a pagina avancada de pesquisa
+- [x] Adicionar um link "ADvenced Search" abaixo o campo de busca
+- [x] Clicar no link vai a pagina avancada de pesquisa
 - [] A pagina avancada de pesquisa possibilita pesquisar as cervejas baseadas em: 
     * [] MAX IBU
     * [] MIN IBU
