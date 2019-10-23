@@ -7,7 +7,7 @@
 - [x] Titulo “The Beer Bank” e subtitulo “Find your favourite beer here”
 - [] Campo de pesquisa
 - [] Site ser respondivo
-- [] Colocar menu fixado para não desaparecer da tela quando navegar para baixo do site.
+- [x] Colocar menu fixado para não desaparecer da tela quando navegar para baixo do site.
 - [] As cervejas devem corresponder ao texto parcialmente digitado na busca
 
 ## Corpo do site ira exibir cervejas e ser responsivo
