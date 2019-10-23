@@ -4,20 +4,20 @@
 - [] Desenvolver o layout da pagina como esta no PDF.
 - [] Clicar em home o site recarrega
 - [] Favorito, Ir para gina de favoritos
-- [] Titulo “The Beer Bank” e subtitulo “Find your favourite beer here”
+- [x] Titulo “The Beer Bank” e subtitulo “Find your favourite beer here”
 - [] Campo de pesquisa
 - [] Site ser respondivo
-- [] Colocar menu fixado para não desaparecer d atela quando navegar para baixo do site.
+- [] Colocar menu fixado para não desaparecer da tela quando navegar para baixo do site.
 - [] As cervejas devem corresponder ao texto parcialmente digitado na busca
 
 ## Corpo do site ira exibir cervejas e ser responsivo
 
-- [] Em Pagina inteira exibir 3 cervejas em linha
-- [] Em Pagina em tamanho mediano exibir 2 cervejas em linha
-- [] Para celulares exibir somente uma linha
+- [x] Em Pagina inteira exibir 3 cervejas em linha
+- [x] Em Pagina em tamanho mediano exibir 2 cervejas em linha
+- [x] Para celulares exibir somente uma linha
 - [] Ter "infinite scroll ", sempre carregando mais a baixo.
 
-## Sesign da garrafa de cerveja
+## Design da garrafa de cerveja
 
 - [] Imagem da cerveja
 - [] Nome
