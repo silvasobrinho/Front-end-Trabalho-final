@@ -3,6 +3,9 @@
 
     height: 18em;
 }
+.header nav{
+    background-color: orangered;
+}
 
 .titulo {
     color: #eeeeee;
