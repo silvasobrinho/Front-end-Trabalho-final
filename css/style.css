@@ -1,15 +1,20 @@
 .header {
     background-color: orangered;
-
     height: 18em;
 }
-.header nav{
+
+.header nav {
     background-color: orangered;
 }
 
 .titulo {
     color: #eeeeee;
     padding-top: 5em;
+}
+
+.mudapesquisa a {
+    padding-left: 38em;
+    color: white;
 }
 
 h1 {
@@ -36,6 +41,6 @@ h1 {
     padding: 3em;
 }
 
-.bg-dark{
+.bg-dark {
     background-color: orangered !important;
 }
