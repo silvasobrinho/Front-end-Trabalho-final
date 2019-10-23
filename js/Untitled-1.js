@@ -1,5 +1,3 @@
-const apiCerva = "https://api.punkapi.com/v2/beers";
-
 $('#search-input').keyup(function(){
     var searchField = $(this).val();
 			if(searchField === '')  {
@@ -10,7 +8,7 @@ $('#search-input').keyup(function(){
             var regex = new RegExp(searchField, "i");
             var output = '<div class="row">';
             var count = 1;
-			  $.each(apiCerva, function(val){
+			  $.each(data, function(key, val){
 				if ((val.name.search(regex) != -1) ) {
                   output += '<div class="col-lg-4 col-md-6 col-sm-12">';
                   output += '<div class="card " style="width: 18rem;">';
@@ -31,7 +29,3 @@ $('#search-input').keyup(function(){
 			  output += '</div>';
 			  $('#cervejas').html(output);
         });
-
-
-
-
