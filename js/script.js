@@ -1,66 +1,86 @@
-var q = $("#search-input").val();
-var options = {
-	url: "https://api.punkapi.com/v2/beers?beer_name=" + q,
-
-	getValue: "name",
-
-	list: {
-		match: {
-			enabled: true
-		}
+class BeerAPI {
+	constructor() {
+	  this.apiUrl = 'https://api.punkapi.com/v2/beers'
 	}
-};
-console.log(options)
-$("#search-input").easyAutocomplete(options);
-
-
-
-var data;
-$.ajax({
-    url: "https://api.punkapi.com/v2/beers",
-    type: "GET",
-    })
-    .done(function (data) {
+	
+	searchByName(name, callback) {
+	  const url = this.apiUrl
+	  const params = {
+		'beer_name': name
+	  }
   
-    
-
-
-
-console.log(data)
-$('#search-input').keyup(function(){
-    var searchField = $(this).val();
-			if(searchField === '')  {
-				$('#cervejas').html('');
-				return;
-            }
-            
-			//let dataparsed = JSON.parse(data);
-            var regex = new RegExp(searchField, "i");
-            var output = '<div class="row">';
-            var count = 1;
-			  $.each((data), function(val){
-				if ((val.name.search(regex) != -1) ) {
-                  output += '<div class="col-lg-4 col-md-6 col-sm-12">';
-                  output += '<div class="card " style="width: 18rem;">';
-                  output += '<img class="card-img-top" src="' +val.image_url +'" alt="Card image cap">';
-                  output += '<div class="card-body">';
-                  output += '<h5 class="card-title">'+val.name+'</h5>';
-                  output += '<p class="card-text">'+val.description+'</p>';
-                  output += '</div>';
-                  output += '</div>';
-                  output += '</div>';
-                 
-				if(count%2 == 0){
-					output += '</div><div class="row">'
-				  }
-				  count++;
-				}
-			  });
-			  output += '</div>';
-			  $('#cervejas').html(output);
-        });
-
-
-
-
-    });
+	  $.getJSON(url, params)
+		.done((data) => {
+		  callback(data)
+		})
+		.fail((response) => {
+		  callback(null)
+		})
+	 }
+  }
+  
+  class BeerSearch {
+	constructor() {
+	  this.BeerAPI = new BeerAPI()
+	  this.elements = {
+		'form': $('#search-form'),
+		'input': $('#search-input'),
+		'results': $('#lCervejas')
+	  }
+	  
+	  this.registerEvents()
+	}
+	
+	registerEvents() {
+	  this.elements.form.on('submit', (e) => {
+		e.preventDefault()
+		const userInput = this.elements.input.val().trim()
+		
+		this.BeerAPI.searchByName(
+		  userInput, (data) => {
+			this.showResults(data)
+			console.log(data)
+		  }
+		)
+	  })
+	}
+	
+	showResults(data) {   
+	  this.elements.results.html('')
+	  
+	  if (data.length === 0) {
+		this.showError('Esta Cerveja não existe na nossa base de Cervejas!')
+	  } else {
+		$('#error').remove()
+		data.forEach((beer) => {
+		  this.elements.results.append(`
+		  <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
+				  <div class="card " style="width: 18rem;">
+				 
+					  <img class="card-img-top smallimg" src="${beer.image_url}">
+					  <div class="card-body ">
+						  <h5 class="card-title">${beer.name}</h5>
+						  <p class="card-text">${beer.description}</p>
+					
+					  </div>
+				  </div>
+			  </div>`)
+	   })  
+	  }
+	}
+  
+	showError(message) {
+	  let alert = $('#error')
+	  
+	  if (alert.length === 0) {
+		this.elements.form.before('<div class="alert alert-danger" id="error"></div>')
+		alert = $('#error')
+	  }
+  
+	  alert.text(message)
+	}
+  }
+  
+  const beerForm = new BeerSearch()
+  
+  

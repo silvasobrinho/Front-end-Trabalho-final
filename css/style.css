@@ -1,6 +1,6 @@
 .header {
     background-color: orangered;
-    height: 18em;
+    height: 20em;
 }
 
 .header nav {
@@ -43,4 +43,28 @@ h1 {
 
 .bg-dark {
     background-color: orangered !important;
+}
+
+.advancedlink a{
+    color: #ffffff;
+    margin-top: 2em;
+}
+
+.advancedlink{
+    padding-top: 0.5em;
+}
+
+.card{    
+    max-width: 90%!important;
+    height: 100%;  
+    display: flex;             
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    
+}
+/* resolve problema dos tamanho das imagens */
+.smallimg {
+    width: 40%; 
+    height: 60%;
 }
