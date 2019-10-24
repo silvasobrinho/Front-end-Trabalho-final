@@ -7,8 +7,13 @@
     background-color: orangered;
 }
 
+.procura {
+    color: #000000;    
+    
+}
+
 .titulo {
-    color: #eeeeee;
+    color: #eeeeee;    
     padding-top: 5em;
 }
 
