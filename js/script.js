@@ -1,3 +1,15 @@
+
+var options = {
+	url: function(q) {
+	return "https://api.punkapi.com/v2/beers?beer_name=" + q;
+},	
+getValue: "name",
+	
+	requestDelay: 1000
+};
+
+$("#search-input").easyAutocomplete(options);
+
 class BeerAPI {
 	constructor() {
 	  this.apiUrl = 'https://api.punkapi.com/v2/beers'
@@ -39,16 +51,14 @@ class BeerAPI {
 		this.BeerAPI.searchByName(
 		  userInput, (data) => {
 			this.showResults(data)
-			console.log(data)
-		  }
+		 }
 		)
 	  })
 	}
 	
 	showResults(data) {   
 	  this.elements.results.html('')
-	  
-	  if (data.length === 0) {
+	  	  if (data.length === 0) {
 		this.showError('Esta Cerveja não existe na nossa base de Cervejas!')
 	  } else {
 		$('#error').remove()
