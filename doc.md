@@ -3,12 +3,12 @@
 ## Design da Pagina
 - [] Desenvolver o layout da pagina como esta no PDF.
 - [x] Clicar em home o site recarrega
-- [x] Favorito, Ir para gina de favoritos
+- [x] Favorito, Ir para pagina de favoritos
 - [x] Titulo “The Beer Bank” e subtitulo “Find your favourite beer here”
-- [] Campo de pesquisa
+- [x] Campo de pesquisa
 - [] Site ser respondivo
 - [x] Colocar menu fixado para não desaparecer da tela quando navegar para baixo do site.
-- [] As cervejas devem corresponder ao texto parcialmente digitado na busca
+- [x] As cervejas devem corresponder ao texto parcialmente digitado na busca
 
 ## Corpo do site ira exibir cervejas e ser responsivo
 
@@ -19,9 +19,9 @@
 
 ## Design da garrafa de cerveja
 
-- [] Imagem da cerveja
-- [] Nome
-- [] Tagline
+- [x] Imagem da cerveja
+- [x] Nome
+- [x] Tagline
 - [] Botão de favorito
 - [] clicar no botão de favorito vai adicionar a cerveja adicionada a lista de favoritas e mudar a cor da estrela
 - [] Efeito de Hover na cerveja selecionada
@@ -38,7 +38,7 @@
 ## Pagina de favorito
 
 - [] Exibe todas as cervejas com a estrela amarela "Favoritada"
-- [] Clicar na estrela vai removela da lista de favoritas e re-renderizar a pagina com a nova lista
+- [] Clicar na estrela vai remover da lista de favoritas e re-renderizar a pagina com a nova lista
 
 ## Busca Avançada
 
