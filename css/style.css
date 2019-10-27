@@ -1,10 +1,10 @@
 .header {
-    background-color: orangered;
+    background-color: rgba(247, 147, 0);
     height: 20em;
 }
 
 .header nav {
-    background-color: orangered;
+    background-color: rgba(247, 147, 0);
 }
 
 .procura {
@@ -47,7 +47,7 @@ h1 {
 }
 
 .bg-dark {
-    background-color: orangered !important;
+    background-color:  rgba(247, 147, 0)!important;
 }
 
 .advancedlink a{
