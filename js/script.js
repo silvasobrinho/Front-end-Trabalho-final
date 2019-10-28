@@ -1,4 +1,5 @@
-var todasCervejas = [];
+const todasCervejas = [];
+
    	   for(var i=1; i<6; i++) {
       fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
         .then(function(resp) {
@@ -8,8 +9,8 @@ var todasCervejas = [];
 			//Esse trem deu trabalho pra ficar colocando um dentro do outro NÂO ESQUECER PORRA!
     	todasCervejas.push(...data)
 		});
-    }
-
+	}
+	
 $(document).ready(function() {
 	console.log(todasCervejas);  
 	todasCervejas.forEach(element => {
