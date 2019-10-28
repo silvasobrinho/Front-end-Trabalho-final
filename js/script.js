@@ -1,3 +1,35 @@
+var todasCervejas = [];
+   	   for(var i=1; i<6; i++) {
+      fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
+        .then(function(resp) {
+          return resp.json();
+        })
+        .then(function(data) {
+			//Esse trem deu trabalho pra ficar colocando um dentro do outro NÂO ESQUECER PORRA!
+    	todasCervejas.push(...data)
+		});
+    }
+
+$(document).ready(function() {
+	console.log(todasCervejas);  
+	todasCervejas.forEach(element => {
+		console.log(todasCervejas); 
+		$('#lCervejas').append(`
+			<div class="col-lg-4 col-md-6 col-sm-12 mt-4">
+			<div class="card " style="width: 18rem;">
+		   
+				<img class="card-img-top smallimg" src="${element.image_url}">
+				<div class="card-body ">
+					<h5 class="card-title">${element.name}</h5>
+					<p class="card-text">${element.description}</p>
+			  
+				</div>
+			</div>
+		</div>`
+		)
+	});
+});
+
 
 var options = {
 	url: function(q) {
@@ -56,6 +88,7 @@ class BeerAPI {
 	  })
 	}
 	
+	// escreve na tela resultado
 	showResults(data) {   
 	  this.elements.results.html('')
 	  	  if (data.length === 0) {
@@ -78,7 +111,7 @@ class BeerAPI {
 	   })  
 	  }
 	}
-  
+  // caso de erro gera umj div com o erro
 	showError(message) {
 	  let alert = $('#error')
 	  
