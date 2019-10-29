@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/easy-autocomplete.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <title>The Beer Bank - Advanced Searh</title>
@@ -45,10 +46,10 @@
                 <div class="form-group">
                     <input class="form-control py-2" type="search" id="search-input" />
                 </div>
-                <button type="submit" class="btn btn-outline-dark mr-3">Pesquisar!</button>
+                <button type="submit" class="btn btn-outline-dark mr-3">Search!</button>
             </form>
         </div>
-        <h6 class="col text-center advancedlink">Filters</h6>
+        <h6 class="col text-center advancedlink tituloh6">Advanced Filters</h6>
    
 <!-- Dropdown para a busca
 https://getbootstrap.com/docs/4.0/components/dropdowns/
@@ -57,15 +58,65 @@ https://getbootstrap.com/docs/4.0/components/dropdowns/
 
 <div class="input-group mb-3">
     <div class="col-lg-1"></div>
-<select class="custom-select col-lg-2" id="inputGroupSelect01">
-    <option selected>Organizar por Cervejas</option>
-    <option value="1">Max IBU</option>
+<!-- <select class="custom-select col-lg-2" onchange="order(this.value)" id="inputGroupSelect01">
+    <option selected>Order Beer By</option>
+    <option >Max IBU</option>
     <option value="2">Min IBU</option>
     <option value="3">Max ABV</option>
     <option value="4">Min ABV</option>
     <option value="5">Max EBC</option>
     <option value="6">Min EBC</option>
-     </select>
+     </select>-->
+
+     <form class="form-inline">
+            <div class="form-group">
+              <label for="mxIBU">Max IBU</label>
+              <input type="search" class="form-control" id="mxIBU" placeholder="Max IBU">
+            </div>
+            <button type="submit" class="btn btn-default">Buscar</button>
+          </form>
+
+     <form class="form-inline">
+            <div class="form-group">
+              <label for="mIBU">Min IBU</label>
+              <input type="search" class="form-control" id="mIBU" placeholder="Min IBU">
+            </div>
+            <button type="submit" class="btn btn-default">Buscar</button>
+          </form>
+     
+
+              <form class="form-inline">
+                    <div class="form-group">
+                      <label for="mxABV">Max ABV</label>
+                      <input type="search" class="form-control" id="mxABV" placeholder="Max ABV">
+                    </div>
+                    <button type="submit" class="btn btn-default">Buscar</button>
+                  </form>
+
+                  <form class="form-inline">
+                        <div class="form-group">
+                          <label for="mABV">Min ABV</label>
+                          <input type="search" class="form-control" id="mABCV" placeholder="Min ABV">
+                        </div>
+                        <button type="submit" class="btn btn-default">Buscar</button>
+                      </form>
+
+                      <form class="form-inline">
+                            <div class="form-group">
+                              <label for="mxEBC">Max EBC</label>
+                              <input type="search" class="form-control" id="mxEBC" placeholder="Max EBC">
+                            </div>
+                            <button type="submit" class="btn btn-default">Buscar</button>
+                          </form>
+
+                          <form class="form-inline">
+                                <div class="form-group">
+                                  <label for="mIBU">Min EBC</label>
+                                  <input type="search" class="form-control" id="mEBC" placeholder="Min EBC">
+                                </div>
+                                <button type="submit" class="btn btn-default">Buscar</button>
+                              </form>
+<!--
      <div class="col-lg-1"></div>
           <label for="bbefore" class=" col-form-label">Bewed before</label>
             <input type="month" class="form-control" id="bbefore" placeholder="Bewed before" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -80,17 +131,17 @@ https://getbootstrap.com/docs/4.0/components/dropdowns/
             </div>
             <div class="col-lg-1"></div>
           </div>
-        </div>
+        </div>-->
     <!--  Referencia https://getbootstrap.com/docs/4.1/components/forms/   -->
     <!--   Checkbox para a pesquisa -->
    
         <!--Bloco do resultado da pesquisa-->
 
         <div class="card-deck cartoes-cervejas row container-fluid mt-4">
-            <div class=" mb-3 text-center row justify-content-center" id="bCerveja">
-                    <!--Bloco das cervejas-->
-          </div>
-        </div>
+                <div class=" mb-3 text-center row justify-content-center" id="lCervejas">
+                        <!--Bloco das cervejas-->
+              </div>
+            </div>
         
     <footer class="py-5 bg-dark">
         <div class="container">
@@ -101,10 +152,10 @@ https://getbootstrap.com/docs/4.0/components/dropdowns/
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/jquery.easy-autocomplete.js"></script>
     <script src="js/popper.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="buscaavancada.js"></script>
-    
+    <script src="js/bootstrap.js"></script>    
+    <script src="js/script.js"></script>
     
 
 </body>

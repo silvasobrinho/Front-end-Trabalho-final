@@ -20,6 +20,7 @@ $(window).scroll(function() {
 			   return resp.json();
 		   })
 		   .then(function(data) {
+			$('#lCervejas').html("");
 			   escrever(data);
 		   });	
 		i++;

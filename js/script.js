@@ -1,7 +1,7 @@
 const todasCervejas = [];
 var i = 2;
-
-$.when ($('#search-input').val() == "").then(function (){
+/*
+$.when ($('#search-input').val() == '').then(function (){
 fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
 		   .then(function(resp) {
 			   return resp.json();
@@ -9,7 +9,17 @@ fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
 		   .then(function(data) {
 			  escrever(data);
 		   });
-});
+});*/
+
+ if ($('#search-input').val() == ''){
+	fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
+			   .then(function(resp) {
+				   return resp.json();
+			   })
+			   .then(function(data) {
+				  escrever(data);
+			   });
+	};
 
 $(window).scroll(function() {
     if($(window).scrollTop() == $(document).height() - $(window).height() && $('#search-input').val() === "") {
@@ -27,9 +37,15 @@ $(window).scroll(function() {
 	}
 });
 
-function escrever(arr){
-		
-	arr.forEach(element => {
+function escrever(data){
+		if (data.length === 0) {
+this.showError('Esta Cerveja não existe na nossa base de Cervejas!')
+} else {
+$('#error').remove()
+	data.forEach(element => {
+		if(element.image_url == null){
+			element.image_url = "https://images-americanas.b2w.io/produtos/01/00/oferta/46158/3/46158304_1GG.jpg"
+		}
 	 $('#lCervejas').append(
 		`
 		<div class="col-lg-4 col-md-6 col-sm-12 mt-4">
@@ -47,8 +63,24 @@ function escrever(arr){
 	)
 	
 });
-}
+}}
 	
+
+
+
+function order(opc){
+	switch(opc){
+		
+		case 'Max IBU' :
+				console.log(todasCervejas);
+				console.log("aaaaaa");
+				escrever(todasCervejas);
+		break;
+
+	}
+
+}
+
 
 
 var options = {
@@ -98,8 +130,7 @@ class BeerAPI {
 	registerEvents() {
 	  this.elements.form.on('submit', (e) => {
 		e.preventDefault()
-		const userInput = this.elements.input.val().trim()
-		
+		const userInput = this.elements.input.val().trim();		
 		this.BeerAPI.searchByName(
 		  userInput, (data) => {
 			this.showResults(data)
@@ -116,6 +147,9 @@ class BeerAPI {
 	  } else {
 		$('#error').remove()
 		data.forEach((beer) => {
+			if(beer.image_url == null){
+				beer.image_url = "https://images-americanas.b2w.io/produtos/01/00/oferta/46158/3/46158304_1GG.jpg"
+			}
 		  this.elements.results.append(`
 		  <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
 				  <div class="card " style="width: 18rem;">
@@ -146,3 +180,4 @@ class BeerAPI {
   
   const beerForm = new BeerSearch()  
   
+
