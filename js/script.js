@@ -1,35 +1,54 @@
 const todasCervejas = [];
+var i = 2;
 
-   	   for(var i=1; i<6; i++) {
-      fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
-        .then(function(resp) {
-          return resp.json();
-        })
-        .then(function(data) {
-			//Esse trem deu trabalho pra ficar colocando um dentro do outro NÂO ESQUECER PORRA!
-    	todasCervejas.push(...data)
-		});
-	}
-	
-$(document).ready(function() {
-	console.log(todasCervejas);  
-	todasCervejas.forEach(element => {
-		console.log(todasCervejas); 
-		$('#lCervejas').append(`
-			<div class="col-lg-4 col-md-6 col-sm-12 mt-4">
-			<div class="card " style="width: 18rem;">
-		   
-				<img class="card-img-top smallimg" src="${element.image_url}">
-				<div class="card-body ">
-					<h5 class="card-title">${element.name}</h5>
-					<p class="card-text">${element.description}</p>
-			  
-				</div>
-			</div>
-		</div>`
-		)
-	});
+$.when ($('#search-input').val() == "").then(function (){
+fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
+		   .then(function(resp) {
+			   return resp.json();
+		   })
+		   .then(function(data) {
+			  escrever(data);
+		   });
 });
+
+$(window).scroll(function() {
+    if($(window).scrollTop() == $(document).height() - $(window).height() && $('#search-input').val() === "") {
+		   // ajax call get data from server and append to the div
+		 	   if( i < 6){
+		   fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
+		   .then(function(resp) {
+			   return resp.json();
+		   })
+		   .then(function(data) {
+			   escrever(data);
+		   });	
+		i++;
+		}
+	}
+});
+
+function escrever(arr){
+		
+	arr.forEach(element => {
+	 $('#lCervejas').append(
+		`
+		<div class="col-lg-4 col-md-6 col-sm-12 mt-4">
+		<div class="card " style="width: 18rem;">
+	   
+			<img class="card-img-top smallimg" src="${element.image_url}">
+			<div class="card-body ">
+				<h5 class="card-title">${element.name}</h5>
+				<p class="card-text">${element.description}</p>
+		  
+			</div>
+		</div>
+	</div>`
+
+	)
+	
+});
+}
+	
 
 
 var options = {
@@ -125,6 +144,5 @@ class BeerAPI {
 	}
   }
   
-  const beerForm = new BeerSearch()
-  
+  const beerForm = new BeerSearch()  
   

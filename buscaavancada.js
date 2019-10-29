@@ -1,4 +1,5 @@
 const todasCervejas = [];
+var i = 2;
 $(document).ready( function tela() { 
 fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
 		   .then(function(resp) {
@@ -13,16 +14,13 @@ fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
 $(window).scroll(function() {
     if($(window).scrollTop() == $(document).height() - $(window).height()) {
 		   // ajax call get data from server and append to the div
-		 let i = 2;
-		   if( i < 6){
-	console.log("oi 1")
+		 	   if( i < 6){
 		   fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
 		   .then(function(resp) {
 			   return resp.json();
 		   })
 		   .then(function(data) {
-			 console.log(data)
-		   escrever(data);
+			   escrever(data);
 		   });	
 		i++;
 		}
