@@ -1,6 +1,35 @@
 const todasCervejas = [];
+$(document).ready( function tela() { 
+fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
+		   .then(function(resp) {
+			   return resp.json();
+		   })
+		   .then(function(data) {
+			 console.log("OIE2")
+		   escrever(data);
+		   });
+		});
 
+$(window).scroll(function() {
+    if($(window).scrollTop() == $(document).height() - $(window).height()) {
+		   // ajax call get data from server and append to the div
+		 let i = 2;
+		   if( i < 6){
+	console.log("oi 1")
+		   fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
+		   .then(function(resp) {
+			   return resp.json();
+		   })
+		   .then(function(data) {
+			 console.log(data)
+		   escrever(data);
+		   });	
+		i++;
+		}
+	}
+});
 
+/*
 	const pegarCervejas = () =>{
 		const callback = (resolve, reject)=>{	
 			for(var i=1; i<6; i++) {
@@ -10,23 +39,22 @@ const todasCervejas = [];
 			})
 			.then(function(data) {
 				//Esse trem deu trabalho pra ficar colocando um dentro do outro NÂO ESQUECER PORRA!
-			todasCervejas.push(...data)
+			escrever(data);
 			});
 			};
 			resolve(todas);
 		}	
 		return new Promise(callback);
-	}
+	}*/
 	    // NAO funcionou  $.each(cervejas, function(element){
 		//for(let element of cervejas){
 		//for(let element in cervejas){
 		//cervejas.forEach(function(item, index, array){
-		function escrever(){
-		console.log(todasCervejas)
-		todasCervejas.forEach(element => {
-		console.log("200 ok entrei");	
-        $('#bCerveja').append(
-            `}
+		function escrever(arr){
+		
+		arr.forEach(element => {
+		 $('#bCerveja').append(
+			`
 			<div class="col-lg-4 col-md-6 col-sm-12 mt-4">
 			<div class="card " style="width: 18rem;">
 		   
@@ -38,14 +66,16 @@ const todasCervejas = [];
 				</div>
 			</div>
 		</div>`
+
 		)
-		console.log("200 ok 2");
-	})
+		
+	});
+}
 		
 
-		}
+		
 
-		const rodartudo = async ()=>{
+/*		const rodartudo = async ()=>{
 			await pegarCervejas();
 			console.log(todasCervejas)
 			escrever();
