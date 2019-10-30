@@ -8,12 +8,11 @@
 }
 
 .procura {
-    color: #000000;    
-    
+    color: #000000;
 }
 
 .titulo {
-    color: #eeeeee;    
+    color: #eeeeee;
     padding-top: 5em;
 }
 
@@ -47,36 +46,75 @@ h1 {
 }
 
 .bg-dark {
-    background-color:  rgba(247, 147, 0)!important;
+    background-color: rgba(247, 147, 0)!important;
 }
 
-.advancedlink a{
+.advancedlink a {
     color: #ffffff;
     margin-top: 2em;
 }
 
-.advancedlink{
+.advancedlink {
     padding-top: 0.5em;
 }
 
-.card{    
+.card {
     max-width: 90%!important;
-    height: 100%;  
-    display: flex;             
+    height: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
     padding: 1em;
-    
 }
+
+
 /* resolve problema dos tamanho das imagens */
+
 .smallimg {
-    width: 40%; 
+    width: 40%;
     height: 60%;
 }
 
-.tituloh6{
+.tituloh6 {
     font-weight: bold;
     font-size: 1.75em;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #000000;
+}
+
+
+/* espaço da descrição da cerveja do modal (pop-up) para o best served */
+
+#bestserved {
+    margin-top: 1em;
+}
+
+
+/* mudança de cor do also like no modal (pop-up)*/
+
+#alsolike {
+    color: orange;
+}
+
+
+/* mudança de cor do nome do produto no modal(pop-up) */
+
+#nomeprodutomodal {
+    color: orange;
+}
+
+
+/* tamanho da imagem no modal(pop-up) */
+
+#imgmodal {
+    width: 200px;
+}
+
+
+/* tamanho da imagem no modal(pop-up) */
+
+#alsolikecard {
+    width: 223px;
+    height: 350px;
+    float: left;
 }
