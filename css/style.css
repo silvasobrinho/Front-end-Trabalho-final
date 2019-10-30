@@ -71,8 +71,9 @@ h1 {
 /* resolve problema dos tamanho das imagens */
 
 .smallimg {
-    width: 40%;
+    width: 10%;
     height: 60%;
+    object-fit: contain;
 }
 
 .tituloh6 {

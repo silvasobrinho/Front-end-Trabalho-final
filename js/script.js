@@ -48,13 +48,13 @@ function escrever(data) {
                     }
                     $('#lCervejas').append(
                             `
-		<div class="col-lg-4 col-md-6 col-sm-12 mt-4">
+		<div class="col-lg-4 col-md-6 col-sm-12 mt-4 ">
 		 <div class="card " style="width: 18rem;" button type="button"  data-toggle="modal" data-target="#modalQuickView">
 	   
 			<img class="card-img-top smallimg" src="${element.image_url}">
 			<div class="card-body ">
 				<h5 class="card-title">${element.name}</h5>
-				<p class="card-text">${element.description}</p>
+				<p class="card-text">${element.tagline}</p>
 
 
 				<!-- Modal inicio: modalQuickView -->
@@ -112,7 +112,7 @@ function escrever(data) {
 												<!-- Card body -->
 												<div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
 													<div class="card-body" style=text-align:left>
-													${element.description}
+													${element.tagline}
 													<h6 class ="title" style=text-align:left id="bestserved"><strong>Best Served With </strong></h6>
 													 <ul style=text-align:left>
 													   ${element.food_pairing
@@ -262,7 +262,7 @@ class BeerSearch {
 					  <img class="card-img-top smallimg" src="${beer.image_url}">
 					  <div class="card-body ">
 						  <h5 class="card-title">${beer.name}</h5>
-						  <p class="card-text">${beer.description}</p>
+						  <p class="card-text">${beer.tagline}</p>
 
 
 						  <!-- Modal inicio: modalQuickView -->
@@ -319,7 +319,7 @@ class BeerSearch {
 												<!-- Card body -->
 												<div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
 													<div class="card-body" style=text-align:left>
-													${beer.description}
+													${beer.tagline}
 													<h6 class ="title" style=text-align:left id="bestserved"><strong>Best Served With </strong></h6>
 													 <ul style=text-align:left>
 													   ${beer.food_pairing
