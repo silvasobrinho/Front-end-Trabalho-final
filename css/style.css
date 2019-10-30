@@ -74,8 +74,16 @@ h1 {
     width: 30%;
     height: 60%;
     object-fit: contain;
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
 }
 
+.two{
+    z-index: 999999;
+}
 .tituloh6 {
     font-weight: bold;
     font-size: 1.75em;

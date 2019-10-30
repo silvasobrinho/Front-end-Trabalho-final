@@ -1,3 +1,29 @@
+var listaFovoritos = [];
+function addFavo(elemento) {
+	if(typeof(Storage) !== "undefined") {
+		if (sessionStorage.lista) {
+			listaFovoritos = JSON.parse(
+				sessionStorage.getItem("listaFovoritos"));
+		} else {
+			listaFovoritos = [];
+		}		
+			if(listaFovoritos.includes(elemento)){
+				listaFovoritos.splice(listaFovoritos.indexOf(elemento),1);
+			}else{
+				listaFovoritos.push(elemento)
+			}			
+			
+		sessionStorage.listaFovoritos = JSON.stringify(listaFovoritos);
+	}
+}
+
+
+
+var fav = listaFovoritos.filter(function id (){
+	return listaFovoritos.includes9item.id
+});
+
+
 const todasCervejas = [];
 var i = 2;
 /*
@@ -50,7 +76,7 @@ function escrever(data) {
                             `
 		<div class="col-lg-4 col-md-6 col-sm-12 mt-4 ">
 		 <div class="card " style="width: 18rem;" button type="button"  data-toggle="modal" data-target="#modalQuickView${element.id}">
-	   
+						<a><i class="fa fa-star-o two" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>
 			<img class="card-img-top smallimg" src="${element.image_url}">
 			<div class="card-body ">
 				<h5 class="card-title">${element.name}</h5>
@@ -158,8 +184,8 @@ function escrever(data) {
 					  </div>
 				  </div>
 
-												<!-- FIM DO MODAL --> 
-		  
+												<!-- FIM DO MODAL 
+												-->
 			</div>
 		</div>
 	</div>`
