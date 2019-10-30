@@ -49,7 +49,7 @@ function escrever(data) {
                     $('#lCervejas').append(
                             `
 		<div class="col-lg-4 col-md-6 col-sm-12 mt-4 ">
-		 <div class="card " style="width: 18rem;" button type="button"  data-toggle="modal" data-target="#modalQuickView">
+		 <div class="card " style="width: 18rem;" button type="button"  data-toggle="modal" data-target="#modalQuickView${element.id}">
 	   
 			<img class="card-img-top smallimg" src="${element.image_url}">
 			<div class="card-body ">
@@ -59,7 +59,7 @@ function escrever(data) {
 
 				<!-- Modal inicio: modalQuickView -->
 				
-				<div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade" id="modalQuickView${element.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-lg" role="document">
 						<div class="modal-content">
 							<div class="modal-body">

@@ -71,7 +71,7 @@ h1 {
 /* resolve problema dos tamanho das imagens */
 
 .smallimg {
-    width: 10%;
+    width: 30%;
     height: 60%;
     object-fit: contain;
 }
