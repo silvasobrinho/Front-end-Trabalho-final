@@ -26,7 +26,15 @@ async function vainaAPI(urls){
 
 console.log(todascervas)
 
-
+if ($('#search-input').val() == '') {
+    fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
+        .then(function(resp) {
+            return resp.json();
+        })
+        .then(function(data) {
+            escrever(data);
+        });
+};
 // function escreveTela(cervejas){
 // 	this.$('#bCerveja').html('')
 // 	console.log(cervejas);
@@ -41,7 +49,7 @@ console.log(todascervas)
 //             `}
 // 			<div class="col-lg-4 col-md-6 col-sm-12 mt-4">
 // 			<div class="card " style="width: 18rem;">
-const todasCervejas = [];
+/* const todasCervejas = [];
 var i = 2;
 $(document).ready( function tela() { 
 fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
@@ -56,8 +64,7 @@ fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
 
 $(window).scroll(function() {
     if($(window).scrollTop() == $(document).height() - $(window).height()) {
-		   // ajax call get data from server and append to the div
-		 	   if( i < 6){
+		  	 	   if( i < 6){
 		   fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
 		   .then(function(resp) {
 			   return resp.json();
@@ -69,7 +76,7 @@ $(window).scroll(function() {
 		i++;
 		}
 	}
-});
+}); */
 
 /*
 	const pegarCervejas = () =>{
@@ -92,22 +99,19 @@ $(window).scroll(function() {
 		//for(let element of cervejas){
 		//for(let element in cervejas){
 		//cervejas.forEach(function(item, index, array){
+			
 		function escrever(arr){
-		
+		console.log("AQuii!")
 		arr.forEach(element => {
 		 $('#bCerveja').append(
 			`
-			<div class="col-lg-4 col-md-6 col-sm-12 mt-4">
-			<div class="card " style="width: 18rem;">
-		   
-				<img class="card-img-top smallimg" src="${element.image_url}">
-				<div class="card-body ">
-					<h5 class="card-title">${element.name}</h5>
-					<p class="card-text">${element.description}</p>
-			  
-				</div>
-			</div>
-		</div>`
+			<div class="col-lg-4 col-md-6 col-sm-12 mt-4 ">
+		 <div class="card " style="width: 18rem;" button type="button"  data-toggle="modal" data-target="#modalQuickView${element.id}">
+						<a><i class="fa fa-star-o two" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>
+			<img class="card-img-top smallimg" src="${element.image_url}">
+			<div class="card-body ">
+				<h5 class="card-title">${element.name}</h5>
+				<p class="card-text">${element.tagline}</p>`
 
 		)
 		

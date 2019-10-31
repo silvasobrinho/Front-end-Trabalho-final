@@ -37,6 +37,9 @@ fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
 		   });
 });*/
 
+
+
+// verificar se não tem nada e escreve na tela as 80 primeiras
 if ($('#search-input').val() == '') {
     fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
         .then(function(resp) {
@@ -197,23 +200,7 @@ function escrever(data) {
 }
 
 
-
-
-function order(opc) {
-    switch (opc) {
-
-        case 'Max IBU':
-            console.log(todasCervejas);
-            console.log("aaaaaa");
-            escrever(todasCervejas);
-            break;
-
-    }
-
-}
-
-
-
+// Auto complete
 var options = {
     url: function(q) {
         return "https://api.punkapi.com/v2/beers?beer_name=" + q;
@@ -230,6 +217,7 @@ class BeerAPI {
         this.apiUrl = 'https://api.punkapi.com/v2/beers'
     }
 
+	// Busca
     searchByName(name, callback) {
         const url = this.apiUrl
         const params = {
