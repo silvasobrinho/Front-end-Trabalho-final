@@ -1,4 +1,6 @@
 var todascervas = [];
+listaAtualizada = [999]
+
 
 
 const urls = ['https://api.punkapi.com/v2/beers?page=1&per_page=80',
@@ -11,8 +13,8 @@ vainaAPI(urls).then(response =>{
 	console.log ("executando!")
 })
 .catch(error => {
-	console.log('error!');
-	console.log(error);
+
+	console.error(error);
 });
 
 async function vainaAPI(urls){
@@ -31,24 +33,7 @@ async function buscar(){
 	console.log(x)
 }
 
-/* $('input[type=search]').on('input', function(){
-	clearTimeout(this.delay);
-	this.delay = setTimeout(function(){
-	   console.log(this.value);
-	   
-	}.bind(this), 800);
- }); */
-//previni recarregar pagina ao precionar enter
-/* $(document).ready(function() {
-	$(window).keydown(function(event){
-	  if(event.keyCode == 13) {
-		event.preventDefault();
-		return false;
-	  }
-	});
-  });  */
-
-  var options = {
+ var options = {
     url: function(q) {
         return "https://api.punkapi.com/v2/beers?beer_name=" + q;
     },
@@ -202,8 +187,8 @@ class BeerSearch {
 
 		)
 		if(listaAtualizada !== ""){
-			console.log("entrei INT")
-		listaAtualizada.forEach(element => {
+			console.log(listaAtualizada)
+			listaAtualizada.forEach(element => {
 			
 			$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star two');	
 		});
@@ -338,11 +323,11 @@ function addFavo(elemento) {
 			
 		sessionStorage.listaFovoritos = JSON.stringify(listaFovoritos);
 	}
-	var fav = listaFovoritos.filter(function (cerva){ return listaFovoritos.includes(cerva.id)});
-		console.log(fav)
+	listaAtualizada = JSON.parse(sessionStorage.getItem("listaFovoritos"));
+	
 }
 
-listaAtualizada = JSON.parse(sessionStorage.getItem("listaFovoritos"));
+
 
 //Faz o infinit scroll
 function rescroll(){

@@ -8,7 +8,7 @@
 - [x] Campo de pesquisa
 - [x] Site ser responsivo
 - [x] Colocar menu fixado para não desaparecer da tela quando navegar para baixo do site.
-- [] As cervejas devem corresponder ao texto parcialmente digitado na busca
+- [x] As cervejas devem corresponder ao texto parcialmente digitado na busca
 
 ## Corpo do site ira exibir cervejas e ser responsivo
 
@@ -42,7 +42,7 @@
 
 ## Busca Avançada
 
-- [x] Adicionar um link "ADvenced Search" abaixo o campo de busca
+- [x] Adicionar um link "ADvanced Search" abaixo o campo de busca
 - [x] Clicar no link vai a pagina avancada de pesquisa
 - [x] A pagina avancada de pesquisa possibilita pesquisar as cervejas baseadas em: 
     * [x] MAX IBU
