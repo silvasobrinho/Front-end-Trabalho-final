@@ -45,10 +45,9 @@
 
             <form id="search-form" class="mx-auto form-inline procura">
                 <div class="form-group">
-                    <input class="form-control py-2" type="search" id="search-input" />
+                    <input class="form-control py-2" type="text" onsearch="buscar()" id="search-input" />
                 </div>
-                <button type="submit" class="btn btn-outline-dark mr-3">Search!</button>
-            </form>
+                 </form>
         </div>
         <h6 class="col text-center advancedlink tituloh6 " onclick="menuavancado()">Advanced Filters</h6>
    
@@ -87,12 +86,12 @@ https://getbootstrap.com/docs/4.0/components/dropdowns/
     
      
 
-        <div class="card-deck cartoes-cervejas row container-fluid mt-4 infinite-container">
+        <div class="card-deck cartoes-cervejas row container-fluid mt-4 infinite">
                 <div class=" mb-3 text-center row justify-content-center" id="bCerveja">
                         <!--Bloco das cervejas-->
               </div>
             </div>
-        
+            <div id="finalI"></div>
             <footer class="py-5 bg-dark">
                 <div class="container">
                     <p class="m-0 text-center text-white">Copyright &copy; The Beer Bank V2</p>
@@ -106,11 +105,23 @@ https://getbootstrap.com/docs/4.0/components/dropdowns/
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>    
     <script src="js/moment.js"></script>
-    <script src="js/jquery.waypoints.js"></script>
-    <script src="js/infinite.js"></script>
     <script src="buscaavancada.js"></script>
     
 
 </body>
 
 </html>
+
+
+<div class="col-lg-4 col-md-6 col-sm-12 mt-4 scrollable-data">
+			
+    <div class="card" id="card-hover" style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
+    <a><i class="fa fa-star-o" id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
+
+    <img class="card-img-top smallimg" src="${element.image_url}">
+   <div class="card-body ">
+       <h5 class="card-title">${element.name}</h5>
+       <p class="card-text">${element.tagline}</p>
+       </div>
+       </div>
+   </div>

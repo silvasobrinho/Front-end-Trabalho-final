@@ -22,83 +22,24 @@ async function vainaAPI(urls){
 		todascervas.push(...lcervejas)
 	}
 	escrever(todascervas)
+	rescroll();
 }
 
+async function buscar(){
+	var x = document.getElementById("search-input");
+	console.log(x)
+}
 
-/* 
-if ($('#search-input').val() == '') {
-    fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
-        .then(function(resp) {
-            return resp.json();
-        })
-        .then(function(data) {
-            escrever(data);
-        });
-}; */
-// function escreveTela(cervejas){
-// 	this.$('#bCerveja').html('')
-// 	console.log(cervejas);
-// 	    // NAO funcionou  $.each(cervejas, function(element){
-// 		//for(let element of cervejas){
-// 		//for(let element in cervejas){
-// 		//cervejas.forEach(function(item, index, array){
-// 		cervejas.forEach(element => {
-		
-// 		console.log("200 ok entrei");	
-//         $('#bCerveja').append(
-//             `}
-// 			<div class="col-lg-4 col-md-6 col-sm-12 mt-4">
-// 			<div class="card " style="width: 18rem;">
-/* const todasCervejas = [];
-var i = 2;
-$(document).ready( function tela() { 
-fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
-		   .then(function(resp) {
-			   return resp.json();
-		   })
-		   .then(function(data) {
-			 console.log("OIE2")
-		   escrever(data);
-		   });
-		});
+$(document).ready(function() {
+	$(window).keydown(function(event){
+	  if(event.keyCode == 13) {
+		event.preventDefault();
+		return false;
+	  }
+	});
+  });
 
-$(window).scroll(function() {
-    if($(window).scrollTop() == $(document).height() - $(window).height()) {
-		  	 	   if( i < 6){
-		   fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
-		   .then(function(resp) {
-			   return resp.json();
-		   })
-		   .then(function(data) {
-			$('#lCervejas').html("");
-			   escrever(data);
-		   });	
-		i++;
-		}
-	}
-}); */
 
-/*
-	const pegarCervejas = () =>{
-		const callback = (resolve, reject)=>{	
-			for(var i=1; i<6; i++) {
-			fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
-			.then(function(resp) {
-				return resp.json();
-			})
-			.then(function(data) {
-				//Esse trem deu trabalho pra ficar colocando um dentro do outro NÂO ESQUECER PORRA!
-			escrever(data);
-			});
-			};
-			resolve(todas);
-		}	
-		return new Promise(callback);
-	}*/
-	    // NAO funcionou  $.each(cervejas, function(element){
-		//for(let element of cervejas){
-		//for(let element in cervejas){
-		//cervejas.forEach(function(item, index, array){
 			function erroTela(menssagem){
 				let alert = $('#error')
 		
@@ -123,9 +64,9 @@ $(window).scroll(function() {
 			}
 		 $('#bCerveja').append(
 			`
-			<div class="col-lg-4 col-md-6 col-sm-12 mt-4 infinite-item">
+			<div class="col-lg-4 col-md-6 col-sm-12 mt-4 scrollable-data">
 			
-			 <div class="card " style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
+			 <div class="card" style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
 			 <a><i class="fa fa-star-o" id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
 		
 			 <img class="card-img-top smallimg" src="${element.image_url}">
@@ -143,10 +84,12 @@ $(window).scroll(function() {
 			
 			$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star two');	
 		});
+
 		
 	}
 	});
 }
+
 }
 // busca avançada
 function order(valor){
@@ -200,12 +143,6 @@ function order(valor){
 		escrever(minebc)
 		break;
 
-		/* case '10' :
-			$('#bCerveja').html('');
-			const all = todascervas.sort(((a,b) => a.name.localeCompare(b.name)))
-			console.log(all)
-			escrever(all)
-		break; */
 		default:
 		/// se não achar vai listar por ordem alfabetica
 		$('#bCerveja').html('');
@@ -253,148 +190,10 @@ function bbefore(data){
 			$('#bCerveja').html('');
 			escrever(data);
 			console.log(data)
-		})
-	
+		})	
 		}
 
-
-
-/*		const rodartudo = async ()=>{
-			await pegarCervejas();
-			console.log(todasCervejas)
-			escrever();
-		};
-
-		rodartudo();
-
-
-/*
-const todasCervejas = [];
-
-		for(var i=1; i<6; i++) {
-		fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
-		  .then(function(resp) {
-			return resp.json();
-		  })
-		  .then(function(data) {
-			  //Esse trem deu trabalho pra ficar colocando um dentro do outro NÂO ESQUECER PORRA!
-		  todasCervejas.push(...data)
-		  });
-	  }
-	
-	
-	    // NAO funcionou  $.each(cervejas, function(element){
-		//for(let element of cervejas){
-		//for(let element in cervejas){
-		//cervejas.forEach(function(item, index, array){
-		console.log(todasCervejas)
-		$(document).ready(
-		todasCervejas.forEach(element => {
-		console.log("200 ok entrei");	
-        $('#bCerveja').append(
-            `}
-			<div class="col-lg-4 col-md-6 col-sm-12 mt-4">
-			<div class="card " style="width: 18rem;">
-		   
-// 				<img class="card-img-top smallimg" src="${element.image_url}">
-// 				<div class="card-body ">
-// 					<h5 class="card-title">${element.name}</h5>
-// 					<p class="card-text">${element.description}</p>
-			  
-// 			</div>
-// 		</div>`
-// 		)
-// 		console.log("200 ok 2");
-// 	});
-	
-// }
-
-
-
-// var todasCervejas = [];
-//    	   for(var i=1; i<6; i++) {
-//       fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
-//         .then(function(resp) {
-//           return resp.json();
-//         })
-//         .then(function(data) {
-// 			//Esse trem deu trabalho pra ficar colocando um dentro do outro NÂO ESQUECER PORRA!
-//     	todasCervejas.push(...data)
-// 		});
-// 	}
-				</div>
-		</div>`
-		)
-		console.log("200 ok 2");
-	})
-		)
-
-
-   	  /* for(var i=1; i<6; i++) {
-      fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
-        .then(function(resp) {
-          return resp.json();
-        })
-        .then(function(data) {
-			//Esse trem deu trabalho pra ficar colocando um dentro do outro NÂO ESQUECER PORRA!
-    	todasCervejas.push(...data)
-		});
-	}
-	
-// 	escreveTela(todasCervejas);
-
-// 	for(let [key, value] of Object.entries(todasCervejas)){
-// 		console.log('key',key , value)
-// 	}
-	for(let [key, value] of Object.entries(todasCervejas)){
-		console.log('key',key , value)
-	}  */
-/*
-	
- //Não funcionou tbm mesmo erro
-var aaa = [];
-	$.when(
-		$.getJSON(`https://api.punkapi.com/v2/beers?page=1&per_page=80`),
-		$.getJSON(`https://api.punkapi.com/v2/beers?page=2&per_page=80`),
-		$.getJSON(`https://api.punkapi.com/v2/beers?page=3&per_page=80`),
-		$.getJSON(`https://api.punkapi.com/v2/beers?page=4&per_page=80`),
-		$.getJSON(`https://api.punkapi.com/v2/beers?page=5&per_page=80`)
-	).done(function(data1, data2, data3, data4, data5) {
-		aaa.push(...data1[0], ...data2[0], ...data3[0], ...data4[0], ...data5[0])
-	});
-(aaa.forEach(function (i){
-	console.log(i);
-	$("#bCerveja").append(`
-	<div class="col-lg-4 col-md-6 col-sm-12 mt-4">
-	<div class="card " style="width: 18rem;">
-   
-		<img class="card-img-top smallimg" src="${i.image_url}">
-		<div class="card-body ">
-			<h5 class="card-title">${i.name}</h5>
-			<p class="card-text">${i.description}</p>
-	  
-		</div>
-	</div>
-</div>`)
-})
-)
-*/
-/*
-pfunc();
-const todas = [];
-async function pfunc(){
-const pegApi1 = await fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`);
-const pegApi2 = await fetch(`https://api.punkapi.com/v2/beers?page=2&per_page=80`);
-const pegApi3 = await fetch(`https://api.punkapi.com/v2/beers?page=3&per_page=80`);
-const pegApi4 = await fetch(`https://api.punkapi.com/v2/beers?page=4&per_page=80`);
-const pegApi5 = await fetch(`https://api.punkapi.com/v2/beers?page=5&per_page=80`);
-console.log(todas)
-Promise.all([pegApi1,pegApi2,pegApi3,pegApi4,pegApi5]).then(function(values){
-	todas.push(...pegApi5, ...pegApi4, ...pegApi2, ...pegApi1, ...pegApi3);
-	console.log(values);
-});
-} */
-
+//Guarda os favoritos
 var listaFovoritos = [];
 function addFavo(elemento) {
 	if(typeof(Storage) !== "undefined") {
@@ -422,19 +221,19 @@ function addFavo(elemento) {
 
 listaAtualizada = JSON.parse(sessionStorage.getItem("listaFovoritos"));
 
-/* setInterval( function muda_estrela(){
-	console.log("to aqui no interval")
-	console.log(listaAtualizada)
-	if(listaAtualizada !== ""){
-		console.log("entrei INT")
-	listaAtualizada.forEach(element => {
-		
-		$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star');	
+//Faz o infinit scroll
+function rescroll(){
+	$('.scrollable-data').show();
+		// hide everything that is out of bound
+	$('.scrollable-data').filter(function(index){
+		console.log($(this).position().top, $(window).height()+$(window).scrollTop());
+		return ($(this).position().top > $(window).height()+$(window).scrollTop());
+	}).hide();
+	
+	}
+	
+	$(window).scroll(function(){
+	  rescroll();
 	});
 	
-}
-},1000); */
-
-var infinite = new Waypoint.Infinite({
-	element: $('.infinite-container')[0]
-  })
+	

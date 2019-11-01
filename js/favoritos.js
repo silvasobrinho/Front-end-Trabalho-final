@@ -22,18 +22,18 @@ if (element.image_url == null) {
 }
 $('#fCerveja').append(
 	`
-	<div class="col-lg-4 col-md-6 col-sm-12 mt-4 ">
-	
-	 <div class="card " style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
-	 <a><i class="fa fa-star-o" id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
-
-	 <img class="card-img-top smallimg" src="${element.image_url}">
-	<div class="card-body ">
-		<h5 class="card-title">${element.name}</h5>
-		<p class="card-text">${element.tagline}</p>
-		</div>
-		</div>
-	</div>`
+			<div class="col-lg-4 col-md-6 col-sm-12 mt-4 scrollable-data">
+			
+			 <div class="card" style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
+			 <a><i class="fa fa-star-o" id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
+		
+			 <img class="card-img-top smallimg" src="${element.image_url}">
+			<div class="card-body ">
+				<h5 class="card-title">${element.name}</h5>
+				<p class="card-text">${element.tagline}</p>
+				</div>
+				</div>
+			</div>`
 
 )
 
@@ -45,6 +45,8 @@ listaAtualizada.forEach(element => {
 });
 }})
 }
+
+
 
 function addFavo(elemento) {
 	console.log('tona funcao de favoritos')
