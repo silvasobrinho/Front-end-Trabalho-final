@@ -123,10 +123,12 @@ $(window).scroll(function() {
 			}
 		 $('#bCerveja').append(
 			`
-			<div class="col-lg-4 col-md-6 col-sm-12 mt-4 ">
-			<a><i class="fa fa-star-o two" id="estrela" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>
-		 <div class="card " style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
-			<img class="card-img-top smallimg" src="${element.image_url}">
+			<div class="col-lg-4 col-md-6 col-sm-12 mt-4 infinite-item">
+			
+			 <div class="card " style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
+			 <a><i class="fa fa-star-o" id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
+		
+			 <img class="card-img-top smallimg" src="${element.image_url}">
 			<div class="card-body ">
 				<h5 class="card-title">${element.name}</h5>
 				<p class="card-text">${element.tagline}</p>
@@ -135,7 +137,14 @@ $(window).scroll(function() {
 			</div>`
 
 		)
+		if(listaAtualizada !== ""){
+			console.log("entrei INT")
+		listaAtualizada.forEach(element => {
+			
+			$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star two');	
+		});
 		
+	}
 	});
 }
 }
@@ -388,7 +397,6 @@ Promise.all([pegApi1,pegApi2,pegApi3,pegApi4,pegApi5]).then(function(values){
 
 var listaFovoritos = [];
 function addFavo(elemento) {
-	console.log('tona funcao de favoritos')
 	if(typeof(Storage) !== "undefined") {
 		if (sessionStorage.listaFovoritos) {
 			listaFovoritos = JSON.parse(
@@ -399,9 +407,11 @@ function addFavo(elemento) {
 			if(listaFovoritos.includes(elemento)){
 				listaFovoritos.splice(listaFovoritos.indexOf(elemento),1);
 				console.log('deletei dos favoritos')
+				$(`#id-${elemento}`).removeClass('fa fa-star two').addClass('fa fa-star-o');
 			}else{
 				listaFovoritos.push(elemento)
 				console.log('adicionei nos favoritos')
+				$(`#id-${elemento}`).removeClass('fa fa-star-o').addClass('fa fa-star two');
 			}			
 			
 		sessionStorage.listaFovoritos = JSON.stringify(listaFovoritos);
@@ -410,3 +420,21 @@ function addFavo(elemento) {
 		console.log(fav)
 }
 
+listaAtualizada = JSON.parse(sessionStorage.getItem("listaFovoritos"));
+
+/* setInterval( function muda_estrela(){
+	console.log("to aqui no interval")
+	console.log(listaAtualizada)
+	if(listaAtualizada !== ""){
+		console.log("entrei INT")
+	listaAtualizada.forEach(element => {
+		
+		$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star');	
+	});
+	
+}
+},1000); */
+
+var infinite = new Waypoint.Infinite({
+	element: $('.infinite-container')[0]
+  })

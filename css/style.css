@@ -58,14 +58,14 @@ h1 {
     padding-top: 0.5em;
 }
 
-.card {
+ .card {
     max-width: 90%!important;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1em;
-}
+} 
 
 
 /* resolve problema dos tamanho das imagens */
@@ -131,8 +131,14 @@ h1 {
     
 }
 
-#estrela{
-    float: right;
-    display: flex;
-    float: left;
+.two{
+    color: rgba(230,154,7);
+}
+
+a i{
+   position: absolute;
+   right: .3em;
+   top: .1em; 
+   z-index: 1;
+
 }

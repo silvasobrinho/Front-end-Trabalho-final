@@ -15,15 +15,15 @@
 - [x] Em Pagina inteira exibir 3 cervejas em linha
 - [x] Em Pagina em tamanho mediano exibir 2 cervejas em linha
 - [x] Para celulares exibir somente uma linha
-- [x] Ter "infinite scroll ", sempre carregando mais a baixo.
+- [] Ter "infinite scroll ", sempre carregando mais a baixo.
 
 ## Design da garrafa de cerveja
 
 - [x] Imagem da cerveja
 - [x] Nome
 - [x] Tagline
-- [] Botão de favorito
-- [] clicar no botão de favorito vai adicionar a cerveja adicionada a lista de favoritas e mudar a cor da estrela
+- [x] Botão de favorito
+- [x] clicar no botão de favorito vai adicionar a cerveja adicionada a lista de favoritas e mudar a cor da estrela
 - [] Efeito de Hover na cerveja selecionada
 - [x] PopUp ao clicar na cerveja.
 
