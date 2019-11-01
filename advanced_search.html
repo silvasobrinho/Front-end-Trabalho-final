@@ -46,6 +46,8 @@
             <form id="search-form" class="mx-auto form-inline procura">
                 <div class="form-group">
                     <input class="form-control py-2" type="text" onsearch="buscar()" id="search-input" />
+                    <button type="submit" class="btn btn-outline-dark mr-3">Search!</button>
+            </form>
                 </div>
                  </form>
         </div>
@@ -111,17 +113,3 @@ https://getbootstrap.com/docs/4.0/components/dropdowns/
 </body>
 
 </html>
-
-
-<div class="col-lg-4 col-md-6 col-sm-12 mt-4 scrollable-data">
-			
-    <div class="card" id="card-hover" style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
-    <a><i class="fa fa-star-o" id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
-
-    <img class="card-img-top smallimg" src="${element.image_url}">
-   <div class="card-body ">
-       <h5 class="card-title">${element.name}</h5>
-       <p class="card-text">${element.tagline}</p>
-       </div>
-       </div>
-   </div>

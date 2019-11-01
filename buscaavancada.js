@@ -21,8 +21,9 @@ async function vainaAPI(urls){
 		const lcervejas = await response.json();
 		todascervas.push(...lcervejas)
 	}
+	if($('#search-input').val() == ''){
 	escrever(todascervas)
-	rescroll();
+	rescroll();}
 }
 
 async function buscar(){
@@ -30,14 +31,136 @@ async function buscar(){
 	console.log(x)
 }
 
-$(document).ready(function() {
+/* $('input[type=search]').on('input', function(){
+	clearTimeout(this.delay);
+	this.delay = setTimeout(function(){
+	   console.log(this.value);
+	   
+	}.bind(this), 800);
+ }); */
+//previni recarregar pagina ao precionar enter
+/* $(document).ready(function() {
 	$(window).keydown(function(event){
 	  if(event.keyCode == 13) {
 		event.preventDefault();
 		return false;
 	  }
 	});
-  });
+  });  */
+
+  var options = {
+    url: function(q) {
+        return "https://api.punkapi.com/v2/beers?beer_name=" + q;
+    },
+    getValue: "name",
+
+    requestDelay: 800
+};
+
+$("#search-input").easyAutocomplete(options);
+
+class BeerAPI {
+    constructor() {
+        this.apiUrl = 'https://api.punkapi.com/v2/beers'
+    }
+
+	// Busca
+    searchByName(name, callback) {
+        const url = this.apiUrl
+        const params = {
+            'beer_name': name
+        }
+
+        $.getJSON(url, params)
+            .done((data) => {
+                callback(data)
+            })
+            .fail((response) => {
+                callback(null)
+            })
+    }
+}
+
+class BeerSearch {
+    constructor() {
+        this.BeerAPI = new BeerAPI()
+        this.elements = {
+            'form': $('#search-form'),
+            'input': $('#search-input'),
+            'results': $('#lCervejas')
+        }
+
+        this.registerEvents()
+    }
+
+    registerEvents() {
+        this.elements.form.on('submit', (e) => {
+            e.preventDefault()
+			const userInput = this.elements.input.val().trim();
+			$('#bCerveja').empty();
+            this.BeerAPI.searchByName(
+                userInput, (data) => {
+                    this.showResults(data)
+                }
+            )
+        })
+    }
+
+    // escreve na tela resultado
+    showResults(data) {
+            this.elements.results.html('')
+            if (data.length === 0 || data===null) {
+                this.showError('Esta Cerveja não existe na nossa base de Cervejas!')
+            } else {
+                $('#error').remove()
+                data.forEach((element) => {
+                    if (element.image_url == null) {
+                        element.image_url = "https://images-americanas.b2w.io/produtos/01/00/oferta/46158/3/46158304_1GG.jpg"
+					}
+					
+					$('#bCerveja').append(
+						`
+						<div class="col-lg-4 col-md-6 col-sm-12 mt-4 scrollable-data">
+						
+						 <div class="card" style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
+						 <a><i class="fa fa-star-o" id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
+					
+						 <img class="card-img-top smallimg" src="${element.image_url}">
+						<div class="card-body ">
+							<h5 class="card-title">${element.name}</h5>
+							<p class="card-text">${element.tagline}</p>
+							</div>
+							</div>
+						</div>`
+			
+					)
+					if(listaAtualizada !== ""){
+						console.log("entrei INT")
+					listaAtualizada.forEach(element => {
+						
+						$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star two');	
+					});
+			
+					
+				}
+				});
+			}
+		}
+		showError(message) {
+			let alert = $('#error')
+	
+			if (alert.length === 0) {
+				this.elements.form.before('<div class="alert alert-danger" id="error"></div>')
+				alert = $('#error')
+			}
+	
+			alert.text(message)
+		}
+	}
+	
+	const beerForm = new BeerSearch()
+
+
 
 
 			function erroTela(menssagem){
