@@ -20,7 +20,7 @@ function addFavo(elemento) {
 
 
 var fav = listaFovoritos.filter(function id (){
-	return listaFovoritos.includes9item.id
+	return listaFovoritos.includes(item.id)
 });
 
 

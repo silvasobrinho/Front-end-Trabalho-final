@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/easy-autocomplete.css">
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <title>The Beer Bank - Advanced Searh</title>
 
@@ -49,96 +50,42 @@
                 <button type="submit" class="btn btn-outline-dark mr-3">Search!</button>
             </form>
         </div>
-        <h6 class="col text-center advancedlink tituloh6">Advanced Filters</h6>
+        <h6 class="col text-center advancedlink tituloh6 " onclick="menuavancado()">Advanced Filters</h6>
    
 <!-- Dropdown para a busca
 https://getbootstrap.com/docs/4.0/components/dropdowns/
 -->
 
 
-<div class="input-group mb-3">
+<div class="input-group mb-3 justify-content-center align-items-center" id="advancedmenu">
     <div class="col-lg-1"></div>
-<!-- <select class="custom-select col-lg-2" onchange="order(this.value)" id="inputGroupSelect01">
+ <select class="custom-select col-lg-2" onchange="order(this.value)" id="inputGroupSelect01">
     <option selected>Order Beer By</option>
-    <option >Max IBU</option>
+    <option value="1">Max IBU</option>
     <option value="2">Min IBU</option>
     <option value="3">Max ABV</option>
     <option value="4">Min ABV</option>
     <option value="5">Max EBC</option>
     <option value="6">Min EBC</option>
-     </select>-->
+     </select>
 
-     <form class="form-inline">
-            <div class="form-group">
-              <label for="mxIBU">Max IBU</label>
-              <input type="search" class="form-control" id="mxIBU" placeholder="Max IBU">
-            </div>
-            <button type="submit" class="btn btn-default">Buscar</button>
-          </form>
 
-     <form class="form-inline">
-            <div class="form-group">
-              <label for="mIBU">Min IBU</label>
-              <input type="search" class="form-control" id="mIBU" placeholder="Min IBU">
-            </div>
-            <button type="submit" class="btn btn-default">Buscar</button>
-          </form>
-     
-
-              <form class="form-inline">
-                    <div class="form-group">
-                      <label for="mxABV">Max ABV</label>
-                      <input type="search" class="form-control" id="mxABV" placeholder="Max ABV">
-                    </div>
-                    <button type="submit" class="btn btn-default">Buscar</button>
-                  </form>
-
-                  <form class="form-inline">
-                        <div class="form-group">
-                          <label for="mABV">Min ABV</label>
-                          <input type="search" class="form-control" id="mABCV" placeholder="Min ABV">
-                        </div>
-                        <button type="submit" class="btn btn-default">Buscar</button>
-                      </form>
-
-                      <form class="form-inline">
-                            <div class="form-group">
-                              <label for="mxEBC">Max EBC</label>
-                              <input type="search" class="form-control" id="mxEBC" placeholder="Max EBC">
-                            </div>
-                            <button type="submit" class="btn btn-default">Buscar</button>
-                          </form>
-
-                          <form class="form-inline">
-                                <div class="form-group">
-                                  <label for="mIBU">Min EBC</label>
-                                  <input type="search" class="form-control" id="mEBC" placeholder="Min EBC">
-                                </div>
-                                <button type="submit" class="btn btn-default">Buscar</button>
-                              </form>
-</div>
-    </div>
-    
-<!--
-     <div class="col-lg-1"></div>
+<div class="col-lg-1"></div>
           <label for="bbefore" class=" col-form-label">Bewed before</label>
-            <input type="month" class="form-control" id="bbefore" placeholder="Bewed before" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button">Buscar</button>
-            </div>      
+            <input type="month"  dateformat="m y" class="form-control" onchange="bbefore(event)" id="bbefore" placeholder="Bewed before" aria-label="Recipient's username" aria-describedby="basic-addon2">
+               
             <div class="col-lg-1"></div>
             <label for="bafter" class=" col-form-label">Bewed after</label>
-            <input type="month" class="form-control col-lg-2" type="bafter" placeholder="Bewed after" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input type="month" class="form-control col-lg-2" type="bafter" onchange="bafter(event)" placeholder="Bewed after" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button">Buscar</button>
-            </div>
+               </div>
             <div class="col-lg-1"></div>
           </div>
-        </div>-->
-    <!--  Referencia https://getbootstrap.com/docs/4.1/components/forms/   -->
-    <!--   Checkbox para a pesquisa -->
-   
-        <!--Bloco do resultado da pesquisa-->
+        </div>
+        </div>
+    </div>
+    
+     
 
         <div class="card-deck cartoes-cervejas row container-fluid mt-4">
                 <div class=" mb-3 text-center row justify-content-center" id="bCerveja">
@@ -158,6 +105,7 @@ https://getbootstrap.com/docs/4.0/components/dropdowns/
     <script src="js/jquery.easy-autocomplete.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>    
+    <script src="js/moment.js"></script>
     <script src="buscaavancada.js"></script>
     
 
