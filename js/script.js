@@ -1,5 +1,5 @@
 var todascervas = [];
-listaAtualizada = [999]
+listaAtualizada = JSON.parse(sessionStorage.getItem("listaFovoritos"));
 
 
 
@@ -119,18 +119,18 @@ class BeerSearch {
 						</div>`
 			
 					)
-					if(listaAtualizada !== ""){
-						console.log("entrei INT")
-					listaAtualizada.forEach(element => {
-						
-						$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star two');	
-					});
-			
 					
+						listaFovoritos.forEach(element => {		
+							console.log("entei na lista de escrever")				
+						$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star two');	
+					}			
+					
+				
+				);
 				}
-				});
-			}
+				)
 		}
+	}
 		showError(message) {
 			let alert = $('#error')
 	
@@ -186,10 +186,9 @@ class BeerSearch {
 			</div>`
 
 		)
-		if(listaAtualizada !== ""){
-			console.log(listaAtualizada)
-			listaAtualizada.forEach(element => {
-			
+		if(listaFovoritos !== ""){
+			listaFovoritos.forEach(element => {
+			console.log("entrei")
 			$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star two');	
 		});
 
@@ -341,8 +340,7 @@ function rescroll(){
 	$('.scrollable-data').show();
 		// hide everything that is out of bound
 	$('.scrollable-data').filter(function(index){
-		console.log($(this).position().top, $(window).height()+$(window).scrollTop());
-		return ($(this).position().top > $(window).height()+$(window).scrollTop());
+	return ($(this).position().top > $(window).height()+$(window).scrollTop());
 	}).hide();
 	
 	}
@@ -451,3 +449,15 @@ $('#alsomight').append(
 
 }
 }
+
+
+setInterval(function(){
+	if(listaAtualizada !== ""){
+		console.log("Verificando favoritos")
+		
+	listaAtualizada.forEach(element => {
+		
+		$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star two');	
+	});
+	}
+},1000);

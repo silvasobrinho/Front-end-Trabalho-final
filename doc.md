@@ -29,11 +29,11 @@
 
 ## Dialogo de PopUp com os detalhes da cerveja
 
-- [] Imagem
-- [] Titulo,Tagline, IBU, ABV, EBC
-- [] "Melhor servido com"
-- [] Voce de gostar também de: (Cervejas similares "Limite de 3 por linha")
-- [] Fechamento do PopUp ao clicar no background ou no botão de fechar "X"
+- [x] Imagem
+- [x] Titulo,Tagline, IBU, ABV, EBC
+- [x] "Melhor servido com"
+- [x] Voce de gostar também de: (Cervejas similares "Limite de 3 por linha")
+- [x] Fechamento do PopUp ao clicar no background ou no botão de fechar "X"
 
 ## Pagina de favorito
 
