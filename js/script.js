@@ -452,7 +452,7 @@ $('#alsomight').append(
 
 
 setInterval(function(){
-	if(listaAtualizada !== ""){
+	if(listaAtualizada !== null){
 		console.log("Verificando favoritos")
 		
 	listaAtualizada.forEach(element => {
