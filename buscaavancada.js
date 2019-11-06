@@ -110,7 +110,7 @@ class BeerSearch {
 						 <div class="card" style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
 						 <a><i class="fa fa-star-o" id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
 					
-						 <img class="card-img-top smallimg" src="${element.image_url}">
+						 <img class="card-img-top smallimg" src="${element.image_url}" data-dismiss="modal" data-toggle="modal" data-target="#popup" onclick="chamaModal(${element.id})">
 						<div class="card-body ">
 							<h5 class="card-title">${element.name}</h5>
 							<p class="card-text">${element.tagline}</p>
@@ -174,10 +174,10 @@ class BeerSearch {
 			`
 			<div class="col-lg-4 col-md-6 col-sm-12 mt-4 scrollable-data">
 			
-			 <div class="card" style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
+			 <div class="card" type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
 			 <a><i class="fa fa-star-o" id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
 		
-			 <img class="card-img-top smallimg" src="${element.image_url}">
+			 <img class="card-img-top img-fluid smallimg" src="${element.image_url}" data-dismiss="modal" data-toggle="modal" data-target="#popup" onclick="chamaModal(${element.id})">
 			<div class="card-body ">
 				<h5 class="card-title">${element.name}</h5>
 				<p class="card-text">${element.tagline}</p>
@@ -209,6 +209,7 @@ function order(valor){
 		const maxibu = todascervas.sort(((a,b) => b.ibu - a.ibu));
 		console.log(maxibu);
 		escrever(maxibu)
+		rescroll()
 		break;
 
 		case '2' : 
@@ -217,6 +218,7 @@ function order(valor){
 		const minibu = todascervas.sort(((a,b) => a.ibu - b.ibu));
 		console.log(minibu);
 		escrever(minibu)
+		rescroll()
 		break;
 
 		case '3' : 
@@ -225,6 +227,7 @@ function order(valor){
 		const maxabv = todascervas.sort(((a,b) => b.abv - a.abv));
 		console.log(maxabv);
 		escrever(maxabv)
+		rescroll()
 		break;
 
 		case '4' : 
@@ -233,6 +236,7 @@ function order(valor){
 		const minabv = todascervas.sort(((a,b) => a.abv - b.abv));
 		console.log(minabv);
 		escrever(minabv)
+		rescroll()
 		break;
 
 		case '5' : 
@@ -241,6 +245,7 @@ function order(valor){
 		const maxebc = todascervas.sort(((a,b) => b.ebc - a.ebc));
 		console.log(maxebc);
 		escrever(maxebc)
+		rescroll()
 		break;
 
 		case '6' : 
@@ -249,6 +254,7 @@ function order(valor){
 		const minebc = todascervas.sort(((a,b) => a.ebc - b.ebc));
 		console.log(minebc);
 		escrever(minebc)
+		rescroll()
 		break;
 
 		default:
@@ -257,6 +263,7 @@ function order(valor){
 		const all = todascervas.sort(((a,b) => a.name.localeCompare(b.name)))
 		console.log(all)
 		escrever(all)
+		rescroll()
 	}
 	
 }
@@ -344,4 +351,103 @@ function rescroll(){
 	  rescroll();
 	});
 	
+	async function chamaModal(id){
+		console.log(id)
+		let itemModal = todascervas[id-1];
 	
+		console.log(itemModal)
+		$("#modalDinamico").empty();
+		$("#modalDinamico").append(`
+		
+		
+		<div class="modal-content">
+        <!--Body-->
+        <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+            <div class="text-center">
+                <div class="container">
+                    <div class="row cointainer-fluid">
+                        <div class="col-md-4">
+                            <img class="card-img-top modalimg" src="${itemModal.image_url}" alt="Card image cap">
+                        </div>
+                        <div class="col-md-8">
+                            <h2>${itemModal.name}</h2>
+							<h4>${itemModal.tagline}</h4>
+							<hr/>
+							<div class="text-left">
+                            <span>
+                                <label class="mdmintitle">IBU:</label> ${itemModal.ibu}
+                            </span>
+                            <span>
+                                <label class="mdmintitle">ABV:</label> ${itemModal.abv}
+                            </span>
+                            <span>
+                                <label class="mdmintitle">EBC:</label> ${itemModal.ebc}
+							</span>
+							</div>
+                            <p class="text-left modalText">${itemModal.description}</p>
+                            <div><h5>Best served with:</h5>
+                            <ul id="lista_comidas" class="text-left">
+							${itemModal.food_pairing
+								.map(ingredient => `<li>${ingredient}</li>`)
+								.join("")}
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <p><h5 id="titlemodalbottom">You might also like:</h5></p>
+                    <div class="row">
+                        <div class="card-deck cerveja row container-fluid mt-4" id="alsomight" style="display:flex;">
+						
+						</div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+		
+		`);
+
+		let also = [];
+		if (itemModal.id == 1 || itemModal.id == 325 || itemModal.id == 324){
+			also.push(todascervas[25] , todascervas[30] , todascervas[50]);
+			
+		}else{
+			also.push( todascervas[itemModal.id - 1],todascervas[itemModal.id + 1] , todascervas[itemModal.id + 2]);
+		}
+		console.log(also)
+		$('#alsomight').empty();
+		escreveralso(also);
+		
+
+function escreveralso(arr){
+
+arr.forEach(element => {
+if (element.image_url == null) {
+	element.image_url = "https://images-americanas.b2w.io/produtos/01/00/oferta/46158/3/46158304_1GG.jpg"
+}
+$('#alsomight').append(
+`
+<div class="col-lg-4 col-md-6 col-sm-12">
+
+ <div class="card cardmod" style="width: 18rem;" button type="button">
+ <a><i id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
+
+ <img class="card-img-top smallimg" src="${element.image_url}" >
+<div class="card-body ">
+	<h5 class="card-title alsotitle">${element.name}</h5>
+	</div>
+	</div>
+</div>`
+
+)
+
+});
+
+}
+}

@@ -41,7 +41,7 @@
         </nav>
         <div class="d-flex flex-column bg-dark titulo">
             <h1 class="align-self-center">The Bear Bank</h1>
-            <h2 class="align-self-center">Find your favorite bear herer</h2>
+            <h2 class="align-self-center"style="color: #eee;">Find your favorite bear herer</h2>
 
             <form id="search-form" class="mx-auto form-inline procura">
                 <div class="form-group">
@@ -88,10 +88,12 @@ https://getbootstrap.com/docs/4.0/components/dropdowns/
     
      
 
-        <div class="card-deck cartoes-cervejas row container-fluid mt-4 infinite">
-                <div class=" mb-3 text-center row justify-content-center" id="bCerveja">
+        <div class="container container-fluid text-center">
+                <div class="row">
+                <div class=" card-deck cerveja row container-fluid mt-4" id="bCerveja">
                         <!--Bloco das cervejas-->
               </div>
+            </div>
             </div>
             <div id="finalI"></div>
             <footer class="py-5 bg-dark">
@@ -99,6 +101,16 @@ https://getbootstrap.com/docs/4.0/components/dropdowns/
                     <p class="m-0 text-center text-white">Copyright &copy; The Beer Bank V2</p>
                 </div>
                 <!-- /.container -->
+
+
+                <!--     Modal            -->
+                <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-notify modal-lg modal-warning " role="document" id="modalDinamico">
+                        <!--Content-->
+                        
+                        <!--/.Content-->
+                    </div>
+                  </div>
             </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

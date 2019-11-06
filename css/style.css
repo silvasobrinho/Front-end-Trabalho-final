@@ -151,3 +151,72 @@ a i{
     padding: 3px;
     margin-bottom: 5px;
 }
+
+.cardmod {
+    max-width: 90%!important;
+    height: 80%;
+    padding: .1em;
+} 
+
+.alsotitle{
+    color: rgba(126, 125, 126)
+}
+
+#titlemodalbottom{
+    color: orange;
+    font-weight: bold;
+    text-align: left;
+    font-size: 1.7em;
+}
+
+.alsomight{
+    margin-top: 0px;
+}
+
+.mdmintitle{
+    font-weight: bold;
+    text-align: left;    
+    display: inline-block;
+
+}
+
+h2{
+    color: orange;
+    text-align: left;
+}
+
+h4{
+    color: rgba(195,195, 195);
+    text-align: left;
+    font-weight: lighter;
+}
+
+hr{
+    border: .175em solid;
+     color:rgb(174, 63, 153); 
+     width:20%;
+     margin-left:0;
+     display:block;
+}
+
+@font-face{
+    font-family: font-modal;
+    src: url(../font/SarunProNarrow-Regular.ttf);
+}
+
+.modalText{
+    font-family: font-modal;
+}
+
+h5{
+    text-align: left;
+}
+
+.modalimg{
+    margin:0 -10px;
+    text-align:center;
+    max-width:70%;
+    max-height:500px;
+    width:auto;
+    height:auto;
+}
