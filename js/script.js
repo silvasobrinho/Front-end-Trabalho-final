@@ -1,213 +1,45 @@
-var listaFovoritos = [];
-function addFavo(elemento) {
-	if(typeof(Storage) !== "undefined") {
-		if (sessionStorage.lista) {
-			listaFovoritos = JSON.parse(
-				sessionStorage.getItem("listaFovoritos"));
-		} else {
-			listaFovoritos = [];
-		}		
-			if(listaFovoritos.includes(elemento)){
-				listaFovoritos.splice(listaFovoritos.indexOf(elemento),1);
-			}else{
-				listaFovoritos.push(elemento)
-			}			
-			
-		sessionStorage.listaFovoritos = JSON.stringify(listaFovoritos);
+var todascervas = [];
+listaAtualizada = [999]
+
+
+
+const urls = ['https://api.punkapi.com/v2/beers?page=1&per_page=80',
+'https://api.punkapi.com/v2/beers?page=2&per_page=80',
+'https://api.punkapi.com/v2/beers?page=3&per_page=80',
+'https://api.punkapi.com/v2/beers?page=4&per_page=80',
+'https://api.punkapi.com/v2/beers?page=5&per_page=80'];
+
+vainaAPI(urls).then(response =>{
+	console.log ("executando!")
+})
+.catch(error => {
+
+	console.error(error);
+});
+
+async function vainaAPI(urls){
+	for(let url of urls){
+		const response = await fetch(url);
+		const lcervejas = await response.json();
+		todascervas.push(...lcervejas)
 	}
+	if($('#search-input').val() == ''){
+	escrever(todascervas)
+	rescroll();}
 }
 
-
-
-var fav = listaFovoritos.filter(function id (){
-	return listaFovoritos.includes(item.id)
-});
-
-
-const todasCervejas = [];
-var i = 2;
-/*
-$.when ($('#search-input').val() == '').then(function (){
-fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
-		   .then(function(resp) {
-			   return resp.json();
-		   })
-		   .then(function(data) {
-			  escrever(data);
-		   });
-});*/
-
-
-
-// verificar se não tem nada e escreve na tela as 80 primeiras
-if ($('#search-input').val() == '') {
-    fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=80`)
-        .then(function(resp) {
-            return resp.json();
-        })
-        .then(function(data) {
-            escrever(data);
-        });
-};
-
-$(window).scroll(function() {
-    if ($(window).scrollTop() == $(document).height() - $(window).height() && $('#search-input').val() === "") {
-        // ajax call get data from server and append to the div
-        if (i < 6) {
-            fetch(`https://api.punkapi.com/v2/beers?page=${i}&per_page=80`)
-                .then(function(resp) {
-                    return resp.json();
-                })
-                .then(function(data) {
-                    escrever(data);
-                });
-            i++;
-        }
-    }
-});
-
-function escrever(data) {
-    if (data.length === 0) {
-        this.showError('Esta Cerveja não existe na nossa base de Cervejas!')
-    } else {
-        $('#error').remove()
-        data.forEach(element => {
-                    if (element.image_url == null) {
-                        element.image_url = "https://images-americanas.b2w.io/produtos/01/00/oferta/46158/3/46158304_1GG.jpg"
-                    }
-                    $('#lCervejas').append(
-                            `
-		<div class="col-lg-4 col-md-6 col-sm-12 mt-4 ">
-		 <div class="card " style="width: 18rem;" button type="button"  data-toggle="modal" data-target="#modalQuickView${element.id}">
-						<a><i class="fa fa-star-o two" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>
-			<img class="card-img-top smallimg" src="${element.image_url}">
-			<div class="card-body ">
-				<h5 class="card-title">${element.name}</h5>
-				<p class="card-text">${element.tagline}</p>
-
-
-				<!-- Modal inicio: modalQuickView -->
-				
-				<div class="modal fade" id="modalQuickView${element.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg" role="document">
-						<div class="modal-content">
-							<div class="modal-body">
-
-							<!-- X PRA FECHAR O POP UP -->
-
-							<button type="button" class="close" data-dismiss="modal">
-							   <span>&times;</span>
-							</button>
-								   
-							<!--/.X PRA FECHAR O POP UP-->
-
-								<div class="row">
-									<div class="col-lg-5">
-											 <!--Carousel Wrapper-->
-									   <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
-											
-											 <!--COLOCAR A IMAGEM DA CERVEJA PRINCIPAL-->
-											<div class="carousel-inner" role="listbox" id="imgmodal">
-												<div class="carousel-item active">
-													<img class="d-block w-100" src="${element.image_url}">
-												</div>
-
-											</div>
-								   <!--/.FIM DA CERVEJA PRINCIPAL-->
-
-									   </div>
-
-
-									<!--/.Carousel Wrapper-->
-								  </div>
-										<div class="col-lg-7">
-											<h2 class="h2-responsive product-name">
-												<h3 id="nomeprodutomodal" style=text-align:left>${element.name} </h3>
-											</h2>
-											<h4 class="h4-responsive">
-												<span class="text-muted">
-													<h6 style=text-align:left>${element.tagline}</h6>
-												</span>
-												<span>
-												<h6 class ="title mt-3" style=text-align:left>IBU: ${element.ibu}  ABV: ${element.abv}%   EBC: ${element.ebc}</h6>
-												</span>
-											</h4>
-
-											<!--Accordion wrapper-->
-											<div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-
-
-
-												<!-- Card body -->
-												<div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
-													<div class="card-body" style=text-align:left>
-													${element.tagline}
-													<h6 class ="title" style=text-align:left id="bestserved"><strong>Best Served With </strong></h6>
-													 <ul style=text-align:left>
-													   ${element.food_pairing
-													   .map(ingredient => `<li>${ingredient}</li>`)
-													   .join("")}
-
-													 </ul>
-													</div>
-													
-												</div>
-
-										  </div>
-										 
-									  </div>
-  
-									  <h4 class ="title ml-4 mt-5" id="alsolike">You might also like:</h4>
-									  
-								  </div>
-								  <div class="card " id="alsolikecard">
-									<img class="card-img-top smallimg" src="${element.image_url}" class="img-fluid" alt="Responsive image">
-									<div class="card-body" id="alsolikecard">
-									 <h5 class="card-title" style="color: grey">${element.name}</h5>
-									</div>
-								  </div>
-								 
-								  <div class="card " id="alsolikecard">
-									<img class="card-img-top smallimg" src="${element.image_url}" class="img-fluid" alt="Responsive image">
-									<div class="card-body" id="alsolikecard">
-									 <h5 class="card-title" style="color: grey">${element.name}</h5>
-									</div>
-								  </div>
-
-								  <div class="card " id="alsolikecard">
-									<img class="card-img-top smallimg" src="${element.image_url}"class="img-fluid" alt="Responsive image">
-									<div class="card-body" id="alsolikecard">
-									 <h5 class="card-title" style="color: grey">${element.name}</h5>
-									</div>
-								  </div>
-
-
-							  </div>
-						  </div>
-					  </div>
-				  </div>
-
-												<!-- FIM DO MODAL 
-												-->
-			</div>
-		</div>
-	</div>`
-
-            )
-
-        });
-    }
+async function buscar(){
+	var x = document.getElementById("search-input");
+	console.log(x)
 }
 
-
-// Auto complete
-var options = {
+ var options = {
     url: function(q) {
         return "https://api.punkapi.com/v2/beers?beer_name=" + q;
     },
     getValue: "name",
 
-    requestDelay: 1000
+    requestDelay: 800
 };
 
 $("#search-input").easyAutocomplete(options);
@@ -249,7 +81,8 @@ class BeerSearch {
     registerEvents() {
         this.elements.form.on('submit', (e) => {
             e.preventDefault()
-            const userInput = this.elements.input.val().trim();
+			const userInput = this.elements.input.val().trim();
+			$('#bCerveja').empty();
             this.BeerAPI.searchByName(
                 userInput, (data) => {
                     this.showResults(data)
@@ -261,143 +94,360 @@ class BeerSearch {
     // escreve na tela resultado
     showResults(data) {
             this.elements.results.html('')
-            if (data.length === 0) {
+            if (data.length === 0 || data===null) {
                 this.showError('Esta Cerveja não existe na nossa base de Cervejas!')
             } else {
                 $('#error').remove()
-                data.forEach((beer) => {
-                    if (beer.image_url == null) {
-                        beer.image_url = "https://images-americanas.b2w.io/produtos/01/00/oferta/46158/3/46158304_1GG.jpg"
-                    }
-                    this.elements.results.append(`
-		  <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
-		   <div class="card " style="width: 18rem;" button type="button"  data-toggle="modal" data-target="#modalQuickView">
-  				 
-					  <img class="card-img-top smallimg" src="${beer.image_url}">
-					  <div class="card-body ">
-						  <h5 class="card-title">${beer.name}</h5>
-						  <p class="card-text">${beer.tagline}</p>
-
-
-						  <!-- Modal inicio: modalQuickView -->
-				<div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg" role="document">
-						<div class="modal-content">
-							<div class="modal-body">
-
-							<!-- X PRA FECHAR O POP UP -->
-
-							<button type="button" class="close" data-dismiss="modal">
-							   <span>&times;</span>
-							</button>
-								   
-							<!--/.X PRA FECHAR O POP UP-->
-
-								<div class="row">
-									<div class="col-lg-5">
-											 <!--Carousel Wrapper-->
-									   <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
-											
-											 <!--COLOCAR A IMAGEM DA CERVEJA PRINCIPAL-->
-											<div class="carousel-inner" role="listbox" id="imgmodal">
-												<div class="carousel-item active">
-													<img class="d-block w-100" src="${beer.image_url}">
-												</div>
-
-											</div>
-								   <!--/.FIM DA CERVEJA PRINCIPAL-->
-
-									   </div>
-
-
-									<!--/.Carousel Wrapper-->
-								  </div>
-										<div class="col-lg-7">
-											<h2 class="h2-responsive product-name">
-												<h3 id="nomeprodutomodal" style=text-align:left>${beer.name} </h3>
-											</h2>
-											<h4 class="h4-responsive">
-												<span class="text-muted">
-													<h6 style=text-align:left>${beer.tagline}</h6>
-												</span>
-												<span>
-												<h6 class ="title mt-3" style=text-align:left>IBU: ${beer.ibu}  ABV: ${beer.abv}%   EBC: ${beer.ebc}</h6>
-												</span>
-											</h4>
-
-											<!--Accordion wrapper-->
-											<div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-
-
-
-												<!-- Card body -->
-												<div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
-													<div class="card-body" style=text-align:left>
-													${beer.tagline}
-													<h6 class ="title" style=text-align:left id="bestserved"><strong>Best Served With </strong></h6>
-													 <ul style=text-align:left>
-													   ${beer.food_pairing
-													   .map(ingredient => `<li>${ingredient}</li>`)
-													   .join("")}
-
-													 </ul>
-													</div>
-													
-												</div>
-
-										  </div>
-										 
-									  </div>
-  
-									  <h4 class ="title ml-4 mt-5" id="alsolike">You might also like:</h4>
-									  
-								  </div>
-								  <div class="card " id="alsolikecard">
-									<img class="card-img-top smallimg" src="${beer.image_url}" class="img-fluid" alt="Responsive image">
-									<div class="card-body" id="alsolikecard">
-									 <h5 class="card-title" style="color: grey">${beer.name}</h5>
-									</div>
-								  </div>
-								 
-								  <div class="card " id="alsolikecard">
-									<img class="card-img-top smallimg" src="${beer.image_url}" class="img-fluid" alt="Responsive image">
-									<div class="card-body" id="alsolikecard">
-									 <h5 class="card-title" style="color: grey">${beer.name}</h5>
-									</div>
-								  </div>
-
-								  <div class="card " id="alsolikecard">
-									<img class="card-img-top smallimg" src="${beer.image_url}"class="img-fluid" alt="Responsive image">
-									<div class="card-body" id="alsolikecard">
-									 <h5 class="card-title" style="color: grey">${beer.name}</h5>
-									</div>
-								  </div>
-
-
-							  </div>
-						  </div>
-					  </div>
-				  </div>
-
-												<!-- FIM DO MODAL --> 
+                data.forEach((element) => {
+                    if (element.image_url == null) {
+                        element.image_url = "https://images-americanas.b2w.io/produtos/01/00/oferta/46158/3/46158304_1GG.jpg"
+					}
 					
-					  </div>
-				  </div>
-			  </div>`)
-                })
-            }
-        }
-        // caso de erro gera umj div com o erro
-    showError(message) {
-        let alert = $('#error')
+					$('#bCerveja').append(
+						`
+						<div class="col-lg-4 col-md-6 col-sm-12 mt-4 scrollable-data">
+						
+						 <div class="card" style="width: 18rem;" button type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
+						 <a><i class="fa fa-star-o" id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
+					
+						 <img class="card-img-top smallimg" src="${element.image_url}" data-dismiss="modal" data-toggle="modal" data-target="#popup" onclick="chamaModal(${element.id})">
+						<div class="card-body ">
+							<h5 class="card-title">${element.name}</h5>
+							<p class="card-text">${element.tagline}</p>
+							</div>
+							</div>
+						</div>`
+			
+					)
+					if(listaAtualizada !== ""){
+						console.log("entrei INT")
+					listaAtualizada.forEach(element => {
+						
+						$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star two');	
+					});
+			
+					
+				}
+				});
+			}
+		}
+		showError(message) {
+			let alert = $('#error')
+	
+			if (alert.length === 0) {
+				this.elements.form.before('<div class="alert alert-danger" id="error"></div>')
+				alert = $('#error')
+			}
+	
+			alert.text(message)
+		}
+	}
+	
+	const beerForm = new BeerSearch()
 
-        if (alert.length === 0) {
-            this.elements.form.before('<div class="alert alert-danger" id="error"></div>')
-            alert = $('#error')
-        }
 
-        alert.text(message)
-    }
+
+
+			function erroTela(menssagem){
+				let alert = $('#error')
+		
+				if (alert.length === 0) {
+					$('#bCerveja').before('<div class="alert alert-danger" id="error"></div>')
+					alert = $('#error')
+				}
+		
+				alert.text(menssagem)
+			}
+			
+		function escrever(arr){
+				// tratando erro se nao tiver nenhuma cerveja
+			if (arr.length === 0) {
+				erroTela('Sua Busca não obteve nenhum resultado!')
+			} else {
+				$('#error').remove()
+					// trta cervejas sem foto
+		arr.forEach(element => {
+			if (element.image_url == null) {
+				element.image_url = "https://images-americanas.b2w.io/produtos/01/00/oferta/46158/3/46158304_1GG.jpg"
+			}
+		 $('#bCerveja').append(
+			`
+			<div class="col-lg-4 col-md-6 col-sm-12 mt-4 scrollable-data">
+			
+			 <div class="card" type="button" data-toggle="modal" data-target="#modalQuickView${element.id}">
+			 <a><i class="fa fa-star-o" id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
+		
+			 <img class="card-img-top img-fluid smallimg" src="${element.image_url}" data-dismiss="modal" data-toggle="modal" data-target="#popup" onclick="chamaModal(${element.id})">
+			<div class="card-body ">
+				<h5 class="card-title">${element.name}</h5>
+				<p class="card-text">${element.tagline}</p>
+				</div>
+				</div>
+			</div>`
+
+		)
+		if(listaAtualizada !== ""){
+			console.log(listaAtualizada)
+			listaAtualizada.forEach(element => {
+			
+			$(`#id-${element}`).removeClass('fa fa-star-o').addClass('fa fa-star two');	
+		});
+
+		
+	}
+	});
 }
 
-const beerForm = new BeerSearch()
+}
+// busca avançada
+function order(valor){
+	console.log("dentro do switch"+ valor)
+	switch(valor){
+		case '1' : 
+		$('#bCerveja').html('');
+		console.log("dentro o case");
+		const maxibu = todascervas.sort(((a,b) => b.ibu - a.ibu));
+		console.log(maxibu);
+		escrever(maxibu)
+		rescroll()
+		break;
+
+		case '2' : 
+		$('#bCerveja').html('');
+		console.log("dentro o case");
+		const minibu = todascervas.sort(((a,b) => a.ibu - b.ibu));
+		console.log(minibu);
+		escrever(minibu)
+		rescroll()
+		break;
+
+		case '3' : 
+		$('#bCerveja').html('');
+		console.log("dentro o case");
+		const maxabv = todascervas.sort(((a,b) => b.abv - a.abv));
+		console.log(maxabv);
+		escrever(maxabv)
+		rescroll()
+		break;
+
+		case '4' : 
+		$('#bCerveja').html('');
+		console.log("dentro o case");
+		const minabv = todascervas.sort(((a,b) => a.abv - b.abv));
+		console.log(minabv);
+		escrever(minabv)
+		rescroll()
+		break;
+
+		case '5' : 
+		$('#bCerveja').html('');
+		console.log("dentro o case");
+		const maxebc = todascervas.sort(((a,b) => b.ebc - a.ebc));
+		console.log(maxebc);
+		escrever(maxebc)
+		rescroll()
+		break;
+
+		case '6' : 
+		$('#bCerveja').html('');
+		console.log("dentro o case");
+		const minebc = todascervas.sort(((a,b) => a.ebc - b.ebc));
+		console.log(minebc);
+		escrever(minebc)
+		rescroll()
+		break;
+
+		default:
+		/// se não achar vai listar por ordem alfabetica
+		$('#bCerveja').html('');
+		const all = todascervas.sort(((a,b) => a.name.localeCompare(b.name)))
+		console.log(all)
+		escrever(all)
+		rescroll()
+	}
+	
+}
+ // começa com ele escondido
+document.getElementById("advancedmenu").style.display = "none";
+// some e  aparece o nmenu avancado
+function menuavancado() {
+	var x = document.getElementById("advancedmenu");
+	if (x.style.display === "") {
+	  x.style.display = "none";
+	  
+	} else {
+	  x.style.display = "";
+	 }
+  }
+	
+
+
+// botoes de pesquisa avancada de antes e apos data
+function bbefore(data){
+	const databf = moment(data.target.value).format('MM-YYYY');
+	fetch('https://api.punkapi.com/v2/beers?brewed_before='+databf+'&per_page=80')
+	.then(function(response){
+		return response.json();
+	}).then(function(data){
+		$('#bCerveja').html('');
+		escrever(data);
+		console.log(data)
+	})
+
+	}
+	
+	function bafter(data){
+		const databf = moment(data.target.value).format('MM-YYYY');
+		fetch('https://api.punkapi.com/v2/beers?brewed_after='+databf+'&per_page=80')
+		.then(function(response){
+			return response.json();
+		}).then(function(data){
+			$('#bCerveja').html('');
+			escrever(data);
+			console.log(data)
+		})	
+		}
+
+//Guarda os favoritos
+var listaFovoritos = [];
+function addFavo(elemento) {
+	if(typeof(Storage) !== "undefined") {
+		if (sessionStorage.listaFovoritos) {
+			listaFovoritos = JSON.parse(
+				sessionStorage.getItem("listaFovoritos"));
+		} else {
+			listaFovoritos = [];
+		}		
+			if(listaFovoritos.includes(elemento)){
+				listaFovoritos.splice(listaFovoritos.indexOf(elemento),1);
+				console.log('deletei dos favoritos')
+				$(`#id-${elemento}`).removeClass('fa fa-star two').addClass('fa fa-star-o');
+			}else{
+				listaFovoritos.push(elemento)
+				console.log('adicionei nos favoritos')
+				$(`#id-${elemento}`).removeClass('fa fa-star-o').addClass('fa fa-star two');
+			}			
+			
+		sessionStorage.listaFovoritos = JSON.stringify(listaFovoritos);
+	}
+	listaAtualizada = JSON.parse(sessionStorage.getItem("listaFovoritos"));
+	
+}
+
+
+
+//Faz o infinit scroll
+function rescroll(){
+	$('.scrollable-data').show();
+		// hide everything that is out of bound
+	$('.scrollable-data').filter(function(index){
+		console.log($(this).position().top, $(window).height()+$(window).scrollTop());
+		return ($(this).position().top > $(window).height()+$(window).scrollTop());
+	}).hide();
+	
+	}
+	
+	$(window).scroll(function(){
+	  rescroll();
+	});
+	
+	async function chamaModal(id){
+		console.log(id)
+		let itemModal = todascervas[id-1];
+	
+		console.log(itemModal)
+		$("#modalDinamico").empty();
+		$("#modalDinamico").append(`
+		
+		
+		<div class="modal-content">
+        <!--Body-->
+        <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+            <div class="text-center">
+                <div class="container">
+                    <div class="row cointainer-fluid">
+                        <div class="col-md-4">
+                            <img class="card-img-top modalimg" src="${itemModal.image_url}" alt="Card image cap">
+                        </div>
+                        <div class="col-md-8">
+                            <h2>${itemModal.name}</h2>
+							<h4>${itemModal.tagline}</h4>
+							<hr/>
+							<div class="text-left">
+                            <span>
+                                <label class="mdmintitle">IBU:</label> ${itemModal.ibu}
+                            </span>
+                            <span>
+                                <label class="mdmintitle">ABV:</label> ${itemModal.abv}
+                            </span>
+                            <span>
+                                <label class="mdmintitle">EBC:</label> ${itemModal.ebc}
+							</span>
+							</div>
+                            <p class="text-left modalText">${itemModal.description}</p>
+                            <div><h5>Best served with:</h5>
+                            <ul id="lista_comidas" class="text-left">
+							${itemModal.food_pairing
+								.map(ingredient => `<li>${ingredient}</li>`)
+								.join("")}
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <p><h5 id="titlemodalbottom">You might also like:</h5></p>
+                    <div class="row">
+                        <div class="card-deck cerveja row container-fluid mt-4" id="alsomight" style="display:flex;">
+						
+						</div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+		
+		`);
+
+		let also = [];
+		if (itemModal.id == 1 || itemModal.id == 325 || itemModal.id == 324){
+			also.push(todascervas[25] , todascervas[30] , todascervas[50]);
+			
+		}else{
+			also.push( todascervas[itemModal.id - 1],todascervas[itemModal.id + 1] , todascervas[itemModal.id + 2]);
+		}
+		console.log(also)
+		$('#alsomight').empty();
+		escreveralso(also);
+		
+
+function escreveralso(arr){
+
+arr.forEach(element => {
+if (element.image_url == null) {
+	element.image_url = "https://images-americanas.b2w.io/produtos/01/00/oferta/46158/3/46158304_1GG.jpg"
+}
+$('#alsomight').append(
+`
+<div class="col-lg-4 col-md-6 col-sm-12">
+
+ <div class="card cardmod" style="width: 18rem;" button type="button">
+ <a><i id="id-${element.id}" aria-hidden="true" onclick="addFavo(${element.id})"></i></a>	
+
+ <img class="card-img-top smallimg" src="${element.image_url}" >
+<div class="card-body ">
+	<h5 class="card-title alsotitle">${element.name}</h5>
+	</div>
+	</div>
+</div>`
+
+)
+
+});
+
+}
+}
